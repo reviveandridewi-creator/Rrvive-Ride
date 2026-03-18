@@ -19,15 +19,10 @@ body {
   background:linear-gradient(135deg,#0f172a,#1e293b);
   color:white;
 }
-.section {
-  max-width:1000px;
-  margin:auto;
-  padding:20px;
-}
-h2 { border-left:4px solid #3b82f6; padding-left:10px; }
+.section { max-width:1000px; margin:auto; padding:20px; }
+h2 { border-left:4px solid #3b82f6; padding-left:10px; margin-bottom:15px; }
 
 .vehicle-group, .static-card { background:#1e293b; padding:15px; border-radius:12px; margin-bottom:20px; }
-
 .static-card { margin-top:10px; }
 
 .service-tile, .tile {
@@ -61,16 +56,13 @@ h2 { border-left:4px solid #3b82f6; padding-left:10px; }
   box-shadow:0 0 8px #3b82f6;
 }
 
+/* Visual-only Add-Ons in Services */
+.service-tile.visual { cursor:default; opacity:0.8; pointer-events:none; }
+
 .selected { background:#3b82f6; }
-.tile-group { display:flex; flex-wrap:wrap; gap:10px; }
-input, button {
-  width:100%;
-  margin-top:10px;
-  padding:10px;
-  border-radius:8px;
-  border:none;
-}
-button { background:#22c55e; color:white; font-weight:bold; }
+.tile-group { display:flex; flex-wrap:wrap; gap:10px; margin-bottom:15px; }
+input, button { width:100%; margin-top:10px; padding:10px; border-radius:8px; border:none; }
+button { background:#22c55e; color:white; font-weight:bold; cursor:pointer; }
 </style>
 </head>
 
@@ -116,11 +108,11 @@ At <strong>Revive & Ride Detailing</strong>, we combine convenience, expertise, 
 </div>
 
 <div class="vehicle-group">
-<h3>Add-Ons</h3>
-<div class="service-tile" data-value="Pet Hair Removal">Pet Hair Removal</div>
-<div class="service-tile" data-value="Stain Treatment">Stain Treatment</div>
-<div class="service-tile" data-value="Odor Removal">Odor Removal</div>
-<div class="service-tile" data-value="Engine Bay Cleaning">Engine Bay Cleaning</div>
+<h3>Add-Ons (Visual)</h3>
+<div class="service-tile visual">Pet Hair Removal</div>
+<div class="service-tile visual">Stain Treatment</div>
+<div class="service-tile visual">Odor Removal</div>
+<div class="service-tile visual">Engine Bay Cleaning</div>
 </div>
 
 </div>
@@ -155,6 +147,9 @@ At <strong>Revive & Ride Detailing</strong>, we combine convenience, expertise, 
 <div class="tile" data-value="Engine Bay Cleaning">Engine Bay Cleaning</div>
 </div>
 
+<h3>Referral</h3>
+<input id="referral" placeholder="Who referred you?">
+
 <h3>Date & Time</h3>
 <div class="tile-group" id="timeGroup">
 <div class="tile" data-value="Morning">Morning</div>
@@ -173,14 +168,12 @@ let selected=[];
 document.querySelectorAll(`#${group} .tile`).forEach(t=>{
 t.onclick=()=>{
 let v=t.dataset.value;
-
 if(exclusive && v===exclusive){
 selected=[v];
 document.querySelectorAll(`#${group} .tile`).forEach(x=>x.classList.remove('selected'));
 t.classList.add('selected');
 return;
 }
-
 if(!multi){
 selected=[v];
 document.querySelectorAll(`#${group} .tile`).forEach(x=>x.classList.remove('selected'));
@@ -205,10 +198,11 @@ const getAddons=select("addonsGroup",true);
 const getTime=select("timeGroup");
 
 document.getElementById("submitBtn").onclick=async()=>{
-let name=name.value;
-let phone=phone.value;
-let email=email.value;
-let date=date.value;
+let name=document.getElementById("name").value;
+let phone=document.getElementById("phone").value;
+let email=document.getElementById("email").value;
+let date=document.getElementById("date").value;
+let referral=document.getElementById("referral").value;
 
 let vehicle=getVehicle();
 let services=getServices();
@@ -216,7 +210,7 @@ let addons=getAddons();
 let time=getTime();
 
 if(!name||!phone||!vehicle.length||!services.length||!time.length||!date){
-alert("Fill everything out");
+alert("Please fill out all required fields");
 return;
 }
 
@@ -224,6 +218,7 @@ await emailjs.send("service_3vguzri","template_5haxilf",{
 name,
 phone,
 email,
+referral: referral||"None",
 vehicle:vehicle.join(", "),
 services:services.join(", "),
 addons:addons.join(", ")||"None",

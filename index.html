@@ -116,12 +116,13 @@ At <strong>Revive & Ride Detailing</strong>, we combine convenience, expertise, 
 <div class="service-tile" data-value="Full Detail - Campers/RVs" data-desc="Complete interior and exterior service with deep cleaning, and protective wax">Full Detail - $250–$350</div>
 </div>
 
+<!-- Visual-only Add-Ons -->
 <div class="vehicle-group">
 <h3>Add-Ons (Visual)</h3>
-<div class="service-tile visual" data-desc="">Pet Hair Removal</div>
-<div class="service-tile visual" data-desc="">Stain Treatment</div>
-<div class="service-tile visual" data-desc="">Odor Removal</div>
-<div class="service-tile visual" data-desc="">Engine Bay Cleaning</div>
+<div class="service-tile visual">Pet Hair Removal</div>
+<div class="service-tile visual">Stain Treatment</div>
+<div class="service-tile visual">Odor Removal</div>
+<div class="service-tile visual">Engine Bay Cleaning</div>
 </div>
 
 </div>
@@ -189,14 +190,13 @@ t.classList.remove('selected');
 selected.push(v);
 t.classList.add('selected');
 }
-}
 };
 });
 return ()=>selected;
 }
 
 const getVehicle=select("vehicleGroup");
-const getServices=select("serviceGroup",true); // Full Detail now normal
+const getServices=select("serviceGroup",true); // Full Detail normal
 const getAddons=select("addonsGroup",true);
 const getTime=select("timeGroup");
 

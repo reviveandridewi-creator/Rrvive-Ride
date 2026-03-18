@@ -30,6 +30,7 @@ p { margin:5px 0; line-height:1.5; }
 .static-card { background:#1e293b; padding:15px; border-radius:12px; }
 
 /* Services Section */
+.vehicle-group { background:#1e293b; padding:15px; border-radius:12px; margin-bottom:20px; }
 .service-tile { background:#0f172a; padding:15px; border-radius:12px; cursor:pointer; transition:0.2s; margin-bottom:10px; }
 .service-tile:hover{ transform:scale(1.05); box-shadow:0 0 12px #3b82f6; }
 .service-tile.selected { background:#3b82f6; }
@@ -42,9 +43,6 @@ p { margin:5px 0; line-height:1.5; }
 .tile { flex:1 1 45%; background:#0f172a; padding:12px; border-radius:10px; cursor:pointer; transition:0.2s; text-align:center; }
 .tile.selected { background:#3b82f6; }
 .tile.disabled { background:#555; cursor:not-allowed; }
-.tile h4 { margin:0 0 5px 0; font-size:16px; }
-.tile p { margin:0; font-size:13px; color:#cbd5e1; }
-
 input[type="text"], input[type="tel"], input[type="email"], input[type="date"] {
   padding:10px; border-radius:8px; border:none; background:#0f172a; color:white; margin-top:10px; width:100%;
 }
@@ -97,54 +95,60 @@ button:hover { background:#16a34a; }
 <div class="section" id="services">
   <h2>Services</h2>
 
-  <!-- Car/SUV -->
-  <h3>Cars & SUVs</h3>
-  <div id="carSuvServices">
-    <div class="service-tile" data-value="Exterior Wash - Car/SUV">
-      <h4>Exterior Wash - $50</h4>
-      <p>Exterior pre-soak, full wash, window/mirror cleaning, wheel cleaning.</p>
-    </div>
-    <div class="service-tile" data-value="Interior Clean - Car/SUV">
-      <h4>Interior Clean - $60</h4>
-      <p>Interior vacuum, wipe-down of surfaces, window/mirror cleaning, protective spray applied.</p>
-    </div>
-    <div class="service-tile" data-value="Full Detail - Car/SUV">
-      <h4>Full Detail - $120</h4>
-      <p>Complete interior and exterior service with deep cleaning and protective wax.</p>
-    </div>
-  </div>
-
-  <!-- Trucks -->
-  <h3>Trucks</h3>
-  <div id="truckServices">
-    <div class="service-tile" data-value="Exterior Wash - Truck">
-      <h4>Exterior Wash - $70</h4>
-      <p>Exterior pre-soak, full wash, window/mirror cleaning, wheel cleaning.</p>
-    </div>
-    <div class="service-tile" data-value="Interior Clean - Truck">
-      <h4>Interior Clean - $80</h4>
-      <p>Interior vacuum, wipe-down of surfaces, window/mirror cleaning, protective spray applied.</p>
-    </div>
-    <div class="service-tile" data-value="Full Detail - Truck">
-      <h4>Full Detail - $150</h4>
-      <p>Complete interior and exterior service with deep cleaning and protective wax.</p>
+  <!-- Car/SUV Services -->
+  <div class="vehicle-group">
+    <h3>Cars & SUVs</h3>
+    <div id="carSuvServices" class="service-group">
+      <div class="service-tile" data-value="Exterior Wash - Car/SUV">
+        <h4>Exterior Wash - $50</h4>
+        <p>Exterior pre-soak, full wash, window/mirror cleaning, wheel cleaning.</p>
+      </div>
+      <div class="service-tile" data-value="Interior Clean - Car/SUV">
+        <h4>Interior Clean - $60</h4>
+        <p>Interior vacuum, wipe-down of surfaces, window/mirror cleaning, protective spray applied.</p>
+      </div>
+      <div class="service-tile" data-value="Full Detail - Car/SUV">
+        <h4>Full Detail - $120</h4>
+        <p>Complete interior and exterior service with deep cleaning and protective wax.</p>
+      </div>
     </div>
   </div>
 
-  <!-- Campers/RVs -->
-  <h3>Campers / RVs</h3>
-  <div id="rvServices">
-    <div class="service-tile" data-value="Exterior Wash - RV">
-      <h4>Exterior Wash - $120–$150</h4>
-      <p>Exterior pre-soak, full wash, window/mirror cleaning, wheel cleaning.</p>
+  <!-- Truck Services -->
+  <div class="vehicle-group">
+    <h3>Trucks</h3>
+    <div id="truckServices" class="service-group">
+      <div class="service-tile" data-value="Exterior Wash - Truck">
+        <h4>Exterior Wash - $70</h4>
+        <p>Exterior pre-soak, full wash, window/mirror cleaning, wheel cleaning.</p>
+      </div>
+      <div class="service-tile" data-value="Interior Clean - Truck">
+        <h4>Interior Clean - $80</h4>
+        <p>Interior vacuum, wipe-down of surfaces, window/mirror cleaning, protective spray applied.</p>
+      </div>
+      <div class="service-tile" data-value="Full Detail - Truck">
+        <h4>Full Detail - $150</h4>
+        <p>Complete interior and exterior service with deep cleaning and protective wax.</p>
+      </div>
     </div>
-    <div class="service-tile" data-value="Interior Clean - RV">
-      <h4>Interior Clean - $150–$200</h4>
-      <p>Interior vacuum, wipe-down of surfaces, window/mirror cleaning.</p>
-    </div>
-    <div class="service-tile" data-value="Full Detail - RV">
-      <h4>Full Detail - $250–$350</h4>
-      <p>Complete interior and exterior service with deep cleaning.</p>
+  </div>
+
+  <!-- Campers/RVs Services -->
+  <div class="vehicle-group">
+    <h3>Campers / RVs</h3>
+    <div id="rvServices" class="service-group">
+      <div class="service-tile" data-value="Exterior Wash - RV">
+        <h4>Exterior Wash - $120–$150</h4>
+        <p>Exterior pre-soak, full wash, window/mirror cleaning, wheel cleaning.</p>
+      </div>
+      <div class="service-tile" data-value="Interior Clean - RV">
+        <h4>Interior Clean - $150–$200</h4>
+        <p>Interior vacuum, wipe-down of surfaces, window/mirror cleaning.</p>
+      </div>
+      <div class="service-tile" data-value="Full Detail - RV">
+        <h4>Full Detail - $250–$350</h4>
+        <p>Complete interior and exterior service with deep cleaning.</p>
+      </div>
     </div>
   </div>
 </div>
@@ -174,15 +178,17 @@ button:hover { background:#16a34a; }
 
   <p style="margin-top:15px;">Date & Time</p>
   <div class="tile-group" id="timeDateGroup">
-    <div style="flex:1 1 45%;">
-      <input type="date" id="date" required>
-    </div>
+    <!-- Time selection first -->
     <div style="flex:1 1 45%;">
       <div class="tile-group" id="timeGroup">
         <div class="tile" data-value="Morning">Morning</div>
         <div class="tile" data-value="Afternoon">Afternoon</div>
         <div class="tile" data-value="Evening">Evening</div>
       </div>
+    </div>
+    <!-- Date input after -->
+    <div style="flex:1 1 45%;">
+      <input type="date" id="date" required>
     </div>
   </div>
 
@@ -303,6 +309,5 @@ document.getElementById('submitBtn').onclick=async()=>{
   }
 };
 </script>
-
 </body>
 </html>

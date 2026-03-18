@@ -61,7 +61,7 @@ h2 { border-left:4px solid #3b82f6; padding-left:10px; margin-bottom:15px; }
 }
 
 /* Visual-only Add-Ons in Services */
-.service-tile { cursor:default; opacity:0.8; pointer-events:none; }
+.service-tile.visual { cursor:default; opacity:0.8; pointer-events:none; }
 
 .selected { background:#3b82f6; }
 .tile-group { display:flex; flex-wrap:wrap; gap:10px; margin-bottom:15px; }
@@ -118,10 +118,10 @@ At <strong>Revive & Ride Detailing</strong>, we combine convenience, expertise, 
 
 <div class="vehicle-group">
 <h3>Add-Ons (Visual)</h3>
-<div class="service-tile visual">Pet Hair Removal</div>
-<div class="service-tile visual">Stain Treatment</div>
-<div class="service-tile visual">Odor Removal</div>
-<div class="service-tile visual">Engine Bay Cleaning</div>
+<div class="service-tile visual" data-desc="">Pet Hair Removal</div>
+<div class="service-tile visual" data-desc="">Stain Treatment</div>
+<div class="service-tile visual" data-desc="">Odor Removal</div>
+<div class="service-tile visual" data-desc="">Engine Bay Cleaning</div>
 </div>
 
 </div>
@@ -177,12 +177,6 @@ let selected=[];
 document.querySelectorAll(`#${group} .tile`).forEach(t=>{
 t.onclick=()=>{
 let v=t.dataset.value;
-if(exclusive && v===exclusive){
-selected=[v];
-document.querySelectorAll(`#${group} .tile`).forEach(x=>x.classList.remove('selected'));
-t.classList.add('selected');
-return;
-}
 if(!multi){
 selected=[v];
 document.querySelectorAll(`#${group} .tile`).forEach(x=>x.classList.remove('selected'));
@@ -202,7 +196,7 @@ return ()=>selected;
 }
 
 const getVehicle=select("vehicleGroup");
-const getServices=select("serviceGroup",true,"Full Detail");
+const getServices=select("serviceGroup",true); // Full Detail now normal
 const getAddons=select("addonsGroup",true);
 const getTime=select("timeGroup");
 

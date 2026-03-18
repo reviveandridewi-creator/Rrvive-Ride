@@ -19,9 +19,11 @@ body {
   background:linear-gradient(135deg,#0f172a,#1e293b);
   color:white;
 }
+header { text-align:center; padding:20px; background:#1e293b; }
+header img { max-width:200px; }
+
 .section { max-width:1000px; margin:auto; padding:20px; }
 h2 { border-left:4px solid #3b82f6; padding-left:10px; margin-bottom:15px; }
-
 .vehicle-group, .static-card { background:#1e293b; padding:15px; border-radius:12px; margin-bottom:20px; }
 .static-card { margin-top:10px; }
 
@@ -37,7 +39,7 @@ h2 { border-left:4px solid #3b82f6; padding-left:10px; margin-bottom:15px; }
 }
 
 /* Hover glow for selectable tiles */
-.service-tile:hover, .tile:hover { transform:scale(1.05); box-shadow:0 0 12px #3b82f6; }
+.service-tile:hover:not(.visual), .tile:hover { transform:scale(1.05); box-shadow:0 0 12px #3b82f6; }
 
 /* Hover descriptions for services */
 .service-tile[data-desc]:hover::after {
@@ -49,11 +51,13 @@ h2 { border-left:4px solid #3b82f6; padding-left:10px; margin-bottom:15px; }
   background:#1e293b;
   padding:8px 12px;
   border-radius:8px;
-  white-space:nowrap;
+  white-space:normal;
   font-size:0.9rem;
   color:#cbd5e1;
   z-index:10;
   box-shadow:0 0 8px #3b82f6;
+  max-width:250px;
+  word-wrap:break-word;
 }
 
 /* Visual-only Add-Ons in Services */
@@ -67,6 +71,11 @@ button { background:#22c55e; color:white; font-weight:bold; cursor:pointer; }
 </head>
 
 <body>
+
+<!-- LOGO HEADER -->
+<header>
+  <img src="18896-removebg-preview.png" alt="Revive & Ride Detailing Logo">
+</header>
 
 <!-- ABOUT US -->
 <div class="section">

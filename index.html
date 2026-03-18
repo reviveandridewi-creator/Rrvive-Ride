@@ -133,77 +133,78 @@ At <strong>Revive & Ride Detailing</strong>, we combine convenience, expertise, 
 </div>
 
 <script>
-// Tile selection
-function select(group, multi=false){
-let selected=[];
-document.querySelectorAll(`#${group} .tile`).forEach(t=>{
-t.onclick=()=>{
-let v=t.dataset.value;
-if(!multi){
-selected=[v];
-document.querySelectorAll(`#${group} .tile`).forEach(x=>x.classList.remove('selected'));
-t.classList.add('selected');
-}else{
-if(selected.includes(v)){
-selected=selected.filter(x=>x!==v);
-t.classList.remove('selected');
-}else{
-selected.push(v);
-t.classList.add('selected');
-}
-updateTotal();
-};
-};
-return ()=>selected;
-}
+// --- Fixed Tile Selection Logic ---
+const selections = { vehicle: [], service: [], addon: [], time: [] };
 
-const getVehicle=select("vehicleGroup");
-const getServices=select("serviceGroup",true);
-const getAddons=select("addonsGroup",true);
-const getTime=select("timeGroup");
-
-// Total calculation with ranges
-function updateTotal(){
-let minTotal=0, maxTotal=0;
-getServices().forEach(v=>{
-const el=[...document.querySelectorAll('#serviceGroup .tile')].find(t=>t.dataset.value===v);
-if(el){ let p=parseInt(el.dataset.price); minTotal+=p; maxTotal+=p; }
-});
-getAddons().forEach(v=>{
-const el=[...document.querySelectorAll('#addonsGroup .tile')].find(t=>t.dataset.value===v);
-if(el){ let min=parseInt(el.dataset.min), max=parseInt(el.dataset.max); minTotal+=min; maxTotal+=max; }
-});
-document.getElementById('totalPrice').innerText = minTotal===maxTotal ? minTotal : `${minTotal}–${maxTotal}`;
-}
-updateTotal();
-
-document.getElementById("submitBtn").onclick=async()=>{
-let name=document.getElementById("name").value;
-let phone=document.getElementById("phone").value;
-let email=document.getElementById("email").value;
-let date=document.getElementById("date").value;
-let referral=document.getElementById("referral").value;
-let vehicle=getVehicle();
-let services=getServices();
-let addons=getAddons();
-let time=getTime();
-
-if(!name||!phone||!vehicle.length||!services.length||!time.length||!date){
-alert("Please fill out all required fields");
-return;
+function setupTiles(groupId, multi=false) {
+  const tiles = document.querySelectorAll(`#${groupId} .tile`);
+  tiles.forEach(tile => {
+    tile.addEventListener('click', () => {
+      const value = tile.dataset.value;
+      if (!multi) {
+        selections[groupId] = [value];
+        tiles.forEach(t => t.classList.remove('selected'));
+        tile.classList.add('selected');
+      } else {
+        if (selections[groupId].includes(value)) {
+          selections[groupId] = selections[groupId].filter(v => v !== value);
+          tile.classList.remove('selected');
+        } else {
+          selections[groupId].push(value);
+          tile.classList.add('selected');
+        }
+      }
+      updateTotal();
+    });
+  });
 }
 
-await emailjs.send("service_3vguzri","template_5haxilf",{
-name, phone, email,
-referral: referral||"None",
-vehicle:vehicle.join(", "),
-services:services.join(", "),
-addons:addons.join(", ")||"None",
-date, time:time.join(", ")
-});
+setupTiles('vehicleGroup', false);
+setupTiles('timeGroup', false);
+setupTiles('serviceGroup', true);
+setupTiles('addonsGroup', true);
 
-alert("Booking Sent!");
+function updateTotal() {
+  let minTotal = 0, maxTotal = 0;
+  selections.service.forEach(v => {
+    const el = [...document.querySelectorAll('#serviceGroup .tile')].find(t => t.dataset.value === v);
+    if(el){ let p=parseInt(el.dataset.price); minTotal+=p; maxTotal+=p; }
+  });
+  selections.addon.forEach(v => {
+    const el = [...document.querySelectorAll('#addonsGroup .tile')].find(t => t.dataset.value === v);
+    if(el){ let min=parseInt(el.dataset.min), max=parseInt(el.dataset.max); minTotal+=min; maxTotal+=max; }
+  });
+  document.getElementById('totalPrice').innerText = minTotal===maxTotal ? minTotal : `${minTotal}–${maxTotal}`;
+}
+
+document.getElementById("submitBtn").onclick = async () => {
+  let name=document.getElementById("name").value;
+  let phone=document.getElementById("phone").value;
+  let email=document.getElementById("email").value;
+  let date=document.getElementById("date").value;
+  let referral=document.getElementById("referral").value;
+  let vehicle=selections.vehicle;
+  let services=selections.service;
+  let addons=selections.addon;
+  let time=selections.time;
+
+  if(!name||!phone||!vehicle.length||!services.length||!time.length||!date){
+    alert("Please fill out all required fields");
+    return;
+  }
+
+  await emailjs.send("service_3vguzri","template_5haxilf",{
+    name, phone, email,
+    referral: referral||"None",
+    vehicle:vehicle.join(", "),
+    services:services.join(", "),
+    addons:addons.join(", ")||"None",
+    date, time:time.join(", ")
+  });
+
+  alert("Booking Sent!");
 };
 </script>
+
 </body>
 </html>

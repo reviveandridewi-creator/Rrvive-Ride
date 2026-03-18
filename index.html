@@ -13,56 +13,17 @@ emailjs.init("gIfsgrL1sVw862LdG");
 </script>
 
 <style>
-body {
-  font-family:'Poppins',sans-serif;
-  margin:0;
-  background:linear-gradient(135deg,#0f172a,#1e293b);
-  color:white;
-}
+body { font-family:'Poppins',sans-serif; margin:0; background:linear-gradient(135deg,#0f172a,#1e293b); color:white; }
 header { text-align:center; padding:20px; background:#1e293b; }
 header img { max-width:200px; }
-
 .section { max-width:1000px; margin:auto; padding:20px; }
 h2 { border-left:4px solid #3b82f6; padding-left:10px; margin-bottom:15px; }
 .vehicle-group, .static-card { background:#1e293b; padding:15px; border-radius:12px; margin-bottom:20px; }
 .static-card { margin-top:10px; }
-
-.service-tile, .tile {
-  background:#0f172a;
-  padding:15px;
-  border-radius:12px;
-  cursor:pointer;
-  transition:0.2s;
-  margin-bottom:10px;
-  text-align:center;
-  position:relative;
-}
-
-/* Hover glow for selectable tiles */
+.service-tile, .tile { background:#0f172a; padding:15px; border-radius:12px; cursor:pointer; transition:0.2s; margin-bottom:10px; text-align:center; position:relative; }
 .service-tile:hover:not(.visual), .tile:hover { transform:scale(1.05); box-shadow:0 0 12px #3b82f6; }
-
-/* Hover descriptions for services */
-.service-tile[data-desc]:hover::after {
-  content: attr(data-desc);
-  position:absolute;
-  bottom:105%;
-  left:50%;
-  transform:translateX(-50%);
-  background:#1e293b;
-  padding:8px 12px;
-  border-radius:8px;
-  white-space:normal;
-  font-size:0.9rem;
-  color:#cbd5e1;
-  z-index:10;
-  box-shadow:0 0 8px #3b82f6;
-  max-width:250px;
-  word-wrap:break-word;
-}
-
-/* Visual-only Add-Ons in Services */
+.service-tile[data-desc]:hover::after { content: attr(data-desc); position:absolute; bottom:105%; left:50%; transform:translateX(-50%); background:#1e293b; padding:8px 12px; border-radius:8px; white-space:normal; font-size:0.9rem; color:#cbd5e1; z-index:10; box-shadow:0 0 8px #3b82f6; max-width:250px; word-wrap:break-word; }
 .service-tile.visual { cursor:default; opacity:0.8; pointer-events:none; }
-
 .selected { background:#3b82f6; }
 .tile-group { display:flex; flex-wrap:wrap; gap:10px; margin-bottom:15px; }
 input, button { width:100%; margin-top:10px; padding:10px; border-radius:8px; border:none; }
@@ -73,12 +34,10 @@ button { background:#22c55e; color:white; font-weight:bold; cursor:pointer; }
 
 <body>
 
-<!-- LOGO HEADER -->
 <header>
   <img src="18896-removebg-preview.png" alt="Revive & Ride Detailing Logo">
 </header>
 
-<!-- ABOUT US -->
 <div class="section">
 <h2>Revive Your Ride, Anytime, Anywhere.</h2>
 <p style="color:#cbd5e1;">
@@ -92,7 +51,6 @@ At <strong>Revive & Ride Detailing</strong>, we combine convenience, expertise, 
 <div class="static-card"><h3>Special Offers</h3><p>First 10 customers get 10% off! Refer a friend and both enjoy 10% off your next service.</p></div>
 </div>
 
-<!-- SERVICES -->
 <div class="section">
 <h2>Services</h2>
 
@@ -117,19 +75,17 @@ At <strong>Revive & Ride Detailing</strong>, we combine convenience, expertise, 
 <div class="service-tile" data-value="Full Detail - Campers/RVs" data-price="300" data-desc="Complete interior and exterior service with deep cleaning, and protective wax — Estimated time: 4-6 hours">Full Detail - $250–$350</div>
 </div>
 
-<!-- Visual-only Add-Ons with Prices -->
 <div class="vehicle-group">
 <h3>Add-Ons (Visual)</h3>
-<div class="service-tile visual">Pet Hair Removal - $30–$50</div>
-<div class="service-tile visual">Stain Treatment - $40</div>
-<div class="service-tile visual">Odor Removal - $30</div>
-<div class="service-tile visual">Engine Bay Cleaning - $35</div>
-<div class="service-tile visual">Polish - $25–$45</div>
+<div class="service-tile visual" data-min="30" data-max="50">Pet Hair Removal - $30–$50</div>
+<div class="service-tile visual" data-min="40" data-max="40">Stain Treatment - $40</div>
+<div class="service-tile visual" data-min="30" data-max="30">Odor Removal - $30</div>
+<div class="service-tile visual" data-min="35" data-max="35">Engine Bay Cleaning - $35</div>
+<div class="service-tile visual" data-min="25" data-max="45">Polish - $25–$45</div>
 </div>
 
 </div>
 
-<!-- BOOKING -->
 <div class="section">
 <h2>Book Appointment</h2>
 
@@ -153,14 +109,13 @@ At <strong>Revive & Ride Detailing</strong>, we combine convenience, expertise, 
 
 <h3>Add-Ons</h3>
 <div class="tile-group" id="addonsGroup">
-<div class="tile" data-value="Pet Hair Removal" data-price="30">Pet Hair Removal</div>
-<div class="tile" data-value="Stain Treatment" data-price="40">Stain Treatment</div>
-<div class="tile" data-value="Odor Removal" data-price="30">Odor Removal</div>
-<div class="tile" data-value="Engine Bay Cleaning" data-price="35">Engine Bay Cleaning</div>
-<div class="tile" data-value="Polish" data-price="35">Polish</div>
+<div class="tile" data-value="Pet Hair Removal" data-min="30" data-max="50">Pet Hair Removal</div>
+<div class="tile" data-value="Stain Treatment" data-min="40" data-max="40">Stain Treatment</div>
+<div class="tile" data-value="Odor Removal" data-min="30" data-max="30">Odor Removal</div>
+<div class="tile" data-value="Engine Bay Cleaning" data-min="35" data-max="35">Engine Bay Cleaning</div>
+<div class="tile" data-value="Polish" data-min="25" data-max="45">Polish</div>
 </div>
 
-<!-- Total Price Display -->
 <h3>Total: $<span id="totalPrice">0</span></h3>
 
 <h3>Referral</h3>
@@ -174,12 +129,11 @@ At <strong>Revive & Ride Detailing</strong>, we combine convenience, expertise, 
 </div>
 
 <input type="date" id="date">
-
 <button id="submitBtn">Submit Booking</button>
 </div>
 
 <script>
-// Tile selection logic
+// Tile selection
 function select(group, multi=false){
 let selected=[];
 document.querySelectorAll(`#${group} .tile`).forEach(t=>{
@@ -208,21 +162,19 @@ const getServices=select("serviceGroup",true);
 const getAddons=select("addonsGroup",true);
 const getTime=select("timeGroup");
 
-// Update total price
+// Total calculation with ranges
 function updateTotal(){
-let total=0;
+let minTotal=0, maxTotal=0;
 getServices().forEach(v=>{
 const el=[...document.querySelectorAll('#serviceGroup .tile')].find(t=>t.dataset.value===v);
-if(el) total+=parseInt(el.dataset.price);
+if(el){ let p=parseInt(el.dataset.price); minTotal+=p; maxTotal+=p; }
 });
 getAddons().forEach(v=>{
 const el=[...document.querySelectorAll('#addonsGroup .tile')].find(t=>t.dataset.value===v);
-if(el) total+=parseInt(el.dataset.price);
+if(el){ let min=parseInt(el.dataset.min), max=parseInt(el.dataset.max); minTotal+=min; maxTotal+=max; }
 });
-document.getElementById('totalPrice').innerText=total;
+document.getElementById('totalPrice').innerText = minTotal===maxTotal ? minTotal : `${minTotal}–${maxTotal}`;
 }
-
-// Initialize total on page load
 updateTotal();
 
 document.getElementById("submitBtn").onclick=async()=>{
@@ -231,7 +183,6 @@ let phone=document.getElementById("phone").value;
 let email=document.getElementById("email").value;
 let date=document.getElementById("date").value;
 let referral=document.getElementById("referral").value;
-
 let vehicle=getVehicle();
 let services=getServices();
 let addons=getAddons();
@@ -243,20 +194,16 @@ return;
 }
 
 await emailjs.send("service_3vguzri","template_5haxilf",{
-name,
-phone,
-email,
+name, phone, email,
 referral: referral||"None",
 vehicle:vehicle.join(", "),
 services:services.join(", "),
 addons:addons.join(", ")||"None",
-date,
-time:time.join(", ")
+date, time:time.join(", ")
 });
 
 alert("Booking Sent!");
 };
 </script>
-
 </body>
 </html>

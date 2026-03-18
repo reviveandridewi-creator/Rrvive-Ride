@@ -5,14 +5,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Revive & Ride Detailing</title>
 
+<!-- Google Fonts -->
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 
-<!-- EmailJS v4 -->
+<!-- EmailJS SDK -->
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 <script>
-emailjs.init({
-  publicKey: "gIfsgrL1sVw862LdG"
-});
+emailjs.init("gIfsgrL1sVw862LdG"); // Your public key
 </script>
 
 <style>
@@ -37,6 +36,7 @@ header img {
 h2 {
   border-left:4px solid #3b82f6;
   padding-left:10px;
+  margin-bottom:10px;
 }
 .grid {
   display:grid;
@@ -81,6 +81,7 @@ form {
   background:#0f172a;
   padding:20px;
   border-radius:12px;
+  margin-top:20px;
 }
 input {
   padding:10px;
@@ -91,6 +92,7 @@ input {
   display:flex;
   flex-wrap:wrap;
   gap:10px;
+  margin-top:5px;
 }
 .tile {
   flex:1 1 45%;
@@ -119,6 +121,7 @@ button {
   border-radius:10px;
   font-weight:bold;
   color:white;
+  margin-top:10px;
 }
 </style>
 </head>
@@ -126,7 +129,7 @@ button {
 <body>
 
 <header>
-<img src="https://i.ibb.co/HMD5b3H/18896-removebg-preview.png">
+<img src="https://i.ibb.co/HMD5b3H/18896-removebg-preview.png" alt="Revive & Ride Detailing">
 </header>
 
 <div class="section">
@@ -135,62 +138,50 @@ button {
 
 <div class="card">
 <h3>Cars & SUVs</h3>
-
 <div class="service">
 Exterior Wash $50
 <div class="desc">Exterior pre-soak, full wash, window and mirror cleaning, and wheel cleaning.</div>
 </div>
-
 <div class="service">
 Interior Clean $60
-<div class="desc">Interior vacuum, wipe-down of surfaces, window and mirror cleaning, and interior protectant applied.</div>
+<div class="desc">Interior vacuum, wipe-down of surfaces, window and mirror cleaning, and protective spray applied.</div>
 </div>
-
 <div class="service">
 Full Detail $120
 <div class="desc">Complete interior and exterior service with deep cleaning and protective wax.</div>
 </div>
-
 </div>
 
 <div class="card">
 <h3>Trucks</h3>
-
 <div class="service">
 Exterior Wash $70
 <div class="desc">Exterior pre-soak, full wash, window and mirror cleaning, and wheel cleaning.</div>
 </div>
-
 <div class="service">
 Interior Clean $80
-<div class="desc">Interior vacuum, wipe-down of surfaces, window and mirror cleaning, and interior protectant applied.</div>
+<div class="desc">Interior vacuum, wipe-down of surfaces, window and mirror cleaning, and protective spray applied.</div>
 </div>
-
 <div class="service">
 Full Detail $150
 <div class="desc">Complete interior and exterior service with deep cleaning and protective wax.</div>
 </div>
-
 </div>
 
 <div class="card">
 <h3>Campers / RVs</h3>
-
 <div class="service">
 Exterior Wash $120–$150
-<div class="desc">Exterior pre-soak, full wash, and window and mirror cleaning.</div>
+<div class="desc">Exterior pre-soak, full wash, window and mirror cleaning, and wheel cleaning.</div>
 </div>
-
 <div class="service">
 Interior Clean $150–$200
-<div class="desc">Interior vacuum, wipe-down of surfaces, and window and mirror cleaning.</div>
+<div class="desc">Interior vacuum, wipe-down of surfaces, and window/mirror cleaning.</div>
 </div>
-
 <div class="service">
 Full Detail $250–$350
 <div class="desc">Complete interior and exterior service with deep cleaning.</div>
 </div>
-
 </div>
 
 </div>
@@ -204,7 +195,7 @@ Full Detail $250–$350
 <input type="text" id="name" placeholder="Full Name*" required>
 <input type="tel" id="phone" placeholder="Phone*" required>
 <input type="email" id="email" placeholder="Email">
-<input type="text" id="referral" placeholder="Referral">
+<input type="text" id="referral" placeholder="Referral (optional)">
 
 <label>Vehicle</label>
 <div class="tile-group" id="vehicleGroup">
@@ -235,7 +226,7 @@ Full Detail $250–$350
 </div>
 
 <script>
-// toggle service descriptions
+// Service descriptions toggle
 document.querySelectorAll('.service').forEach(s=>{
   s.onclick=()=>{
     document.querySelectorAll('.service').forEach(x=>{if(x!==s)x.classList.remove('active');});
@@ -243,7 +234,7 @@ document.querySelectorAll('.service').forEach(s=>{
   }
 });
 
-// vehicle selection
+// Vehicle selection
 let vehicle="";
 document.querySelectorAll('#vehicleGroup .tile').forEach(t=>{
   t.onclick=()=>{
@@ -253,26 +244,22 @@ document.querySelectorAll('#vehicleGroup .tile').forEach(t=>{
   }
 });
 
-// services selection
+// Services selection (Full Detail exclusivity)
 let services=[];
 document.querySelectorAll('#serviceGroup .tile').forEach(t=>{
   t.onclick=()=>{
     let val=t.dataset.value;
-
     if(val==="Full Detail"){
       services=["Full Detail"];
       document.querySelectorAll('#serviceGroup .tile').forEach(x=>x.classList.remove('selected'));
       t.classList.add('selected');
       return;
     }
-
     if(services.includes("Full Detail")){
       services=[];
       document.querySelectorAll('#serviceGroup .tile').forEach(x=>x.classList.remove('selected'));
     }
-
     t.classList.toggle('selected');
-
     if(services.includes(val)){
       services=services.filter(x=>x!==val);
     } else {
@@ -281,7 +268,7 @@ document.querySelectorAll('#serviceGroup .tile').forEach(t=>{
   }
 });
 
-// time selection
+// Time selection
 let time="";
 document.querySelectorAll('#timeGroup .tile').forEach(t=>{
   t.onclick=()=>{
@@ -292,9 +279,8 @@ document.querySelectorAll('#timeGroup .tile').forEach(t=>{
   }
 });
 
-// booking limits
+// Booking limits per day/time
 let bookings={};
-
 function updateTime(){
   let d=document.getElementById('date').value;
   document.querySelectorAll('#timeGroup .tile').forEach(t=>{
@@ -311,36 +297,49 @@ document.getElementById('date').addEventListener('change',()=>{
   updateTime();
 });
 
-// submit form
+// Submit form with confirmation
 document.getElementById('form').onsubmit=function(e){
   e.preventDefault();
 
-  let name=document.getElementById('name');
-  let phone=document.getElementById('phone');
-  let email=document.getElementById('email');
-  let referral=document.getElementById('referral');
-  let date=document.getElementById('date');
+  let name=document.getElementById('name').value.trim();
+  let phone=document.getElementById('phone').value.trim();
+  let email=document.getElementById('email').value.trim();
+  let referral=document.getElementById('referral').value.trim();
+  let date=document.getElementById('date').value;
 
-  if(!vehicle || services.length===0 || !time || !date.value){
+  if(!vehicle || services.length===0 || !time || !date){
     alert("Please complete all required selections.");
     return;
   }
 
-  if(!bookings[date.value]){
-    bookings[date.value]={Morning:0,Afternoon:0,Evening:0};
+  // Confirmation popup
+  let confirmMsg = `Please confirm your booking details:\n\n` +
+                   `Name: ${name}\n` +
+                   `Phone: ${phone}\n` +
+                   `Email: ${email}\n` +
+                   `Vehicle: ${vehicle}\n` +
+                   `Services: ${services.join(", ")}\n` +
+                   `Date: ${date}\n` +
+                   `Time: ${time}\n` +
+                   `Referral: ${referral || "None"}\n\n` +
+                   `Click OK to submit your booking.`;
+
+  if(!confirm(confirmMsg)) return;
+
+  if(!bookings[date]){
+    bookings[date]={Morning:0,Afternoon:0,Evening:0};
   }
+  bookings[date][time]++;
 
-  bookings[date.value][time]++;
-
-  emailjs.send("service_a9v46fq","template_5haxilf",{
-    name:name.value,
-    phone:phone.value,
-    email:email.value,
+  emailjs.send("service_3vguzri","template_5haxilf",{
+    name:name,
+    phone:phone,
+    email:email,
     vehicle:vehicle,
     services:services.join(", "),
-    date:date.value,
+    date:date,
     time:time,
-    referral:referral.value
+    referral:referral
   })
   .then(()=>{
     alert("Booking Sent!");

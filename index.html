@@ -123,6 +123,32 @@ button {
   color:white;
   margin-top:10px;
 }
+
+/* Modal styles */
+#modal {
+  display:none;
+  position:fixed;
+  left:0; right:0; top:0; bottom:0;
+  background:rgba(0,0,0,0.5);
+  align-items:center; justify-content:center;
+  z-index:100;
+}
+#modalContent {
+  background:#0f172a;
+  color:white;
+  padding:20px;
+  border-radius:12px;
+  max-width:400px;
+}
+#modal button {
+  background:#3b82f6;
+  margin-left:5px;
+}
+.count {
+  font-size:12px;
+  opacity:0.8;
+  margin-top:4px;
+}
 </style>
 </head>
 
@@ -140,11 +166,11 @@ button {
 <h3>Cars & SUVs</h3>
 <div class="service">
 Exterior Wash $50
-<div class="desc">Exterior pre-soak, full wash, window and mirror cleaning, and wheel cleaning.</div>
+<div class="desc">Exterior pre-soak, full wash, window and mirror cleaning, wheel cleaning.</div>
 </div>
 <div class="service">
 Interior Clean $60
-<div class="desc">Interior vacuum, wipe-down of surfaces, window and mirror cleaning, and protective spray applied.</div>
+<div class="desc">Interior vacuum, wipe-down of surfaces, window/mirror cleaning, protective spray applied.</div>
 </div>
 <div class="service">
 Full Detail $120
@@ -156,11 +182,11 @@ Full Detail $120
 <h3>Trucks</h3>
 <div class="service">
 Exterior Wash $70
-<div class="desc">Exterior pre-soak, full wash, window and mirror cleaning, and wheel cleaning.</div>
+<div class="desc">Exterior pre-soak, full wash, window/mirror cleaning, wheel cleaning.</div>
 </div>
 <div class="service">
 Interior Clean $80
-<div class="desc">Interior vacuum, wipe-down of surfaces, window and mirror cleaning, and protective spray applied.</div>
+<div class="desc">Interior vacuum, wipe-down of surfaces, window/mirror cleaning, protective spray applied.</div>
 </div>
 <div class="service">
 Full Detail $150
@@ -172,11 +198,11 @@ Full Detail $150
 <h3>Campers / RVs</h3>
 <div class="service">
 Exterior Wash $120–$150
-<div class="desc">Exterior pre-soak, full wash, window and mirror cleaning, and wheel cleaning.</div>
+<div class="desc">Exterior pre-soak, full wash, window/mirror cleaning, wheel cleaning.</div>
 </div>
 <div class="service">
 Interior Clean $150–$200
-<div class="desc">Interior vacuum, wipe-down of surfaces, and window/mirror cleaning.</div>
+<div class="desc">Interior vacuum, wipe-down of surfaces, window/mirror cleaning.</div>
 </div>
 <div class="service">
 Full Detail $250–$350
@@ -225,8 +251,24 @@ Full Detail $250–$350
 </form>
 </div>
 
+<!-- Modal -->
+<div id="modal">
+  <div id="modalContent">
+    <div id="modalMessage"></div>
+    <div style="text-align:right; margin-top:10px;">
+      <button id="modalCancel">Cancel</button>
+      <button id="modalOk">Confirm</button>
+    </div>
+  </div>
+</div>
+
 <script>
-// Service descriptions toggle
+// Prevent past dates
+const dateInput = document.getElementById('date');
+const today = new Date().toISOString().split('T')[0];
+dateInput.setAttribute('min', today);
+
+// Service toggle
 document.querySelectorAll('.service').forEach(s=>{
   s.onclick=()=>{
     document.querySelectorAll('.service').forEach(x=>{if(x!==s)x.classList.remove('active');});
@@ -279,7 +321,7 @@ document.querySelectorAll('#timeGroup .tile').forEach(t=>{
   }
 });
 
-// Booking limits per day/time
+// Booking counts demo
 let bookings={};
 function updateTime(){
   let d=document.getElementById('date').value;
@@ -290,15 +332,26 @@ function updateTime(){
     }
   });
 }
-
-document.getElementById('date').addEventListener('change',()=>{
+dateInput.addEventListener('change',()=>{
   time="";
   document.querySelectorAll('#timeGroup .tile').forEach(x=>x.classList.remove('selected'));
   updateTime();
 });
 
-// Submit form with confirmation
-document.getElementById('form').onsubmit=function(e){
+// Modal helper
+function showConfirm(html){
+  return new Promise(resolve=>{
+    document.getElementById('modalMessage').innerHTML=html;
+    const modal=document.getElementById('modal');
+    modal.style.display='flex';
+    document.getElementById('modalOk').onclick=()=>{ modal.style.display='none'; resolve(true);}
+    document.getElementById('modalCancel').onclick=()=>{ modal.style.display='none'; resolve(false);}
+  });
+}
+
+// Submit form
+const submitBtn = document.querySelector('button[type="submit"]');
+document.getElementById('form').onsubmit=async function(e){
   e.preventDefault();
 
   let name=document.getElementById('name').value.trim();
@@ -312,44 +365,48 @@ document.getElementById('form').onsubmit=function(e){
     return;
   }
 
-  // Confirmation popup
-  let confirmMsg = `Please confirm your booking details:\n\n` +
-                   `Name: ${name}\n` +
-                   `Phone: ${phone}\n` +
-                   `Email: ${email}\n` +
-                   `Vehicle: ${vehicle}\n` +
-                   `Services: ${services.join(", ")}\n` +
-                   `Date: ${date}\n` +
-                   `Time: ${time}\n` +
-                   `Referral: ${referral || "None"}\n\n` +
-                   `Click OK to submit your booking.`;
+  // Confirmation modal
+  const confirmMsg = `Please confirm your booking details:<br><br>`+
+                     `Name: ${name}<br>`+
+                     `Phone: ${phone}<br>`+
+                     `Email: ${email || 'None'}<br>`+
+                     `Vehicle: ${vehicle}<br>`+
+                     `Services: ${services.join(", ")}<br>`+
+                     `Date: ${date}<br>`+
+                     `Time: ${time}<br>`+
+                     `Referral: ${referral || 'None'}`;
+  const ok = await showConfirm(confirmMsg);
+  if(!ok) return;
 
-  if(!confirm(confirmMsg)) return;
+  submitBtn.disabled=true;
+  submitBtn.textContent="Sending…";
 
-  if(!bookings[date]){
-    bookings[date]={Morning:0,Afternoon:0,Evening:0};
-  }
-  bookings[date][time]++;
+  try{
+    // Update local booking count demo
+    if(!bookings[date]) bookings[date]={Morning:0,Afternoon:0,Evening:0};
+    bookings[date][time]++;
 
-  emailjs.send("service_3vguzri","template_5haxilf",{
-    name:name,
-    phone:phone,
-    email:email,
-    vehicle:vehicle,
-    services:services.join(", "),
-    date:date,
-    time:time,
-    referral:referral
-  })
-  .then(()=>{
+    await emailjs.send("service_3vguzri","template_5haxilf",{
+      name:name, phone:phone, email:email,
+      vehicle:vehicle, services:services.join(", "),
+      date:date, time:time, referral:referral
+    });
+
     alert("Booking Sent!");
-  })
-  .catch(err=>{
-    console.error(err);
-    alert("Error: " + err.text);
-  });
-
-  updateTime();
+    // reset form
+    document.getElementById('form').reset();
+    vehicle=""; services=[]; time="";
+    document.querySelectorAll('.tile').forEach(x=>x.classList.remove('selected'));
+    document.querySelectorAll('.service').forEach(x=>x.classList.remove('active'));
+    updateTime();
+  } catch(err){
+    console.error("EmailJS error:", err);
+    const msg = err && err.text ? err.text : (err.message || JSON.stringify(err));
+    alert("Sorry — sending failed: " + msg);
+  } finally{
+    submitBtn.disabled=false;
+    submitBtn.textContent="Submit Booking";
+  }
 };
 </script>
 

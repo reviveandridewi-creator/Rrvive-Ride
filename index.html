@@ -9,84 +9,34 @@
 
 <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
 <script>
-(function(){ emailjs.init("Dalton"); })();
+(function(){ emailjs.init("Dalton"); })(); // Your public key
 </script>
 
 <style>
-* { box-sizing: border-box; margin:0; padding:0; }
-body { font-family: 'Poppins', sans-serif; background: linear-gradient(135deg,#0b0f1a,#1e293b); color:#fff; }
-
+* { box-sizing:border-box; margin:0; padding:0; }
+body { font-family:'Poppins',sans-serif; background: linear-gradient(135deg,#0b0f1a,#1e293b); color:#fff; }
 header { text-align:center; padding:20px; background:#0b0f1a; }
 header img { max-width:250px; }
-
 .cta { background:gold; color:black; text-align:center; padding:15px; font-weight:bold; border-radius:10px; margin:20px; }
-
 .section { max-width:1000px; margin:auto; padding:20px; }
 h2 { margin-bottom:15px; border-left:5px solid #1e90ff; padding-left:10px; }
-
 .grid { display:grid; gap:15px; }
 @media(min-width:600px){ .grid { grid-template-columns:1fr 1fr; } }
-
 .card { background:#1f2937; padding:20px; border-radius:15px; }
-
-.service {
-    background:#111827;
-    padding:12px;
-    border-radius:10px;
-    margin-top:10px;
-    cursor:pointer;
-    transition:0.2s;
-}
+.service { background:#111827; padding:12px; border-radius:10px; margin-top:10px; cursor:pointer; transition:0.2s; }
 .service:hover { transform:scale(1.02); }
-
-.desc {
-    display: none;
-    font-size:14px;
-    margin-top:5px;
-    color:#cbd5f5;
-}
-
+.desc { display:none; font-size:14px; margin-top:5px; color:#cbd5f5; }
 .service.active .desc { display:block; }
-
-/* FORM */
 form { display:flex; flex-direction:column; gap:10px; background:#111827; padding:20px; border-radius:15px; }
-
 input { padding:10px; border:none; border-radius:8px; }
-
 label { margin-top:10px; font-weight:500; }
-
-/* TILES */
 .tile-group { display:flex; flex-wrap:wrap; gap:10px; margin-top:5px; }
-.tile {
-    flex:1 1 45%;
-    background:#1f2937;
-    padding:12px;
-    border-radius:10px;
-    text-align:center;
-    cursor:pointer;
-    transition:0.2s;
-}
+.tile { flex:1 1 45%; background:#1f2937; padding:12px; border-radius:10px; text-align:center; cursor:pointer; transition:0.2s; }
 .tile:hover:not(.disabled) { transform:scale(1.05); box-shadow:0 0 10px #1e90ff; }
 .tile.selected { background:#1e90ff; }
 .tile.disabled { background:#555 !important; cursor:not-allowed; }
-
-/* BUTTON */
 button { padding:15px; background:#22c55e; border:none; border-radius:10px; color:white; font-weight:bold; }
-
-/* FLOAT BUTTON */
-.floating-btn {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    background: #22c55e;
-    color: white;
-    padding: 14px 20px;
-    border-radius: 30px;
-    font-weight: 600;
-    text-decoration: none;
-    box-shadow: 0 6px 20px rgba(0,0,0,0.4);
-}
-
+.floating-btn { position: fixed; bottom: 20px; right: 20px; background: #22c55e; color:white; padding:14px 20px; border-radius:30px; font-weight:600; text-decoration:none; box-shadow:0 6px 20px rgba(0,0,0,0.4); }
 footer { text-align:center; padding:20px; }
 </style>
 </head>
@@ -111,7 +61,7 @@ footer { text-align:center; padding:20px; }
 <div class="service">Interior Clean <span class="price">$60</span>
 <div class="desc">Interior vacuum, wipe-down of surfaces, window and mirror cleaning, and interior protectant applied.</div></div>
 <div class="service">Full Detail <span class="price">$120</span>
-<div class="desc">Complete interior and exterior service with deep cleaning and spray wax protection.</div></div>
+<div class="desc">Complete interior and exterior service with deep cleaning and long-lasting protection.</div></div>
 </div>
 
 <div class="card">
@@ -121,7 +71,7 @@ footer { text-align:center; padding:20px; }
 <div class="service">Interior Clean <span class="price">$80</span>
 <div class="desc">Interior vacuum, wipe-down of surfaces, window and mirror cleaning, and interior protectant applied.</div></div>
 <div class="service">Full Detail <span class="price">$150</span>
-<div class="desc">Complete interior and exterior service with deep cleaning and spray wax protection.</div></div>
+<div class="desc">Complete interior and exterior service with deep cleaning and long-lasting protection.</div></div>
 </div>
 
 <div class="card">
@@ -181,7 +131,7 @@ footer { text-align:center; padding:20px; }
 // SERVICE TAP
 document.querySelectorAll('.service').forEach(s=>{
     s.addEventListener('click',()=>{
-        document.querySelectorAll('.service').forEach(x=>{if(x!==s) x.classList.remove('active');});
+        document.querySelectorAll('.service').forEach(x=>{if(x!==s)x.classList.remove('active');});
         s.classList.toggle('active');
     });
 });
@@ -230,7 +180,7 @@ time=t.dataset.value;
 });
 
 // DYNAMIC AVAILABILITY (2 per slot)
-let bookings={}; // stores counts: bookings["YYYY-MM-DD"]={Morning:2, ...}
+let bookings={};
 
 function updateTimeTiles(){
 let selectedDate=document.getElementById('date').value;
@@ -241,7 +191,7 @@ if(bookings[selectedDate] && bookings[selectedDate][t.dataset.value]>=2) t.class
 }
 
 document.getElementById('date').addEventListener('change',()=>{
-time=""; // reset selection
+time="";
 document.querySelectorAll('#timeGroup .tile').forEach(x=>x.classList.remove('selected'));
 updateTimeTiles();
 });
@@ -257,7 +207,6 @@ return;
 // increment bookings
 if(!bookings[date.value]) bookings[date.value]={Morning:0,Afternoon:0,Evening:0};
 bookings[date.value][time]=(bookings[date.value][time]||0)+1;
-
 updateTimeTiles();
 
 // SEND EMAIL
@@ -270,7 +219,7 @@ services:services.join(", "),
 date:date.value,
 time:time,
 referral:referral.value
-}).then(()=> alert("Booking Sent!"));
+}).then(()=> alert("Booking Sent!"), (err)=> alert("Booking failed. "+err.text));
 };
 </script>
 

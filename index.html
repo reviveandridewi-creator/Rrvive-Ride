@@ -24,16 +24,12 @@ body {
   margin:auto;
   padding:20px;
 }
-h2 {
-  border-left:4px solid #3b82f6;
-  padding-left:10px;
-}
-.vehicle-group, .static-card {
-  background:#1e293b;
-  padding:15px;
-  border-radius:12px;
-  margin-bottom:20px;
-}
+h2 { border-left:4px solid #3b82f6; padding-left:10px; }
+
+.vehicle-group, .static-card { background:#1e293b; padding:15px; border-radius:12px; margin-bottom:20px; }
+
+.static-card { margin-top:10px; }
+
 .service-tile, .tile {
   background:#0f172a;
   padding:15px;
@@ -42,11 +38,29 @@ h2 {
   transition:0.2s;
   margin-bottom:10px;
   text-align:center;
+  position:relative;
 }
-.service-tile:hover, .tile:hover {
-  transform:scale(1.05);
-  box-shadow:0 0 12px #3b82f6;
+
+/* Hover glow for selectable tiles */
+.service-tile:hover, .tile:hover { transform:scale(1.05); box-shadow:0 0 12px #3b82f6; }
+
+/* Hover descriptions for services */
+.service-tile[data-desc]:hover::after {
+  content: attr(data-desc);
+  position:absolute;
+  bottom:105%;
+  left:50%;
+  transform:translateX(-50%);
+  background:#1e293b;
+  padding:8px 12px;
+  border-radius:8px;
+  white-space:nowrap;
+  font-size:0.9rem;
+  color:#cbd5e1;
+  z-index:10;
+  box-shadow:0 0 8px #3b82f6;
 }
+
 .selected { background:#3b82f6; }
 .tile-group { display:flex; flex-wrap:wrap; gap:10px; }
 input, button {
@@ -82,23 +96,23 @@ At <strong>Revive & Ride Detailing</strong>, we combine convenience, expertise, 
 
 <div class="vehicle-group">
 <h3>Cars & SUVs</h3>
-<div class="service-tile" data-value="Exterior Wash - Car/SUV">Exterior Wash - $50</div>
-<div class="service-tile" data-value="Interior Clean - Car/SUV">Interior Clean - $60</div>
-<div class="service-tile" data-value="Full Detail - Car/SUV">Full Detail - $120</div>
+<div class="service-tile" data-value="Exterior Wash - Car/SUV" data-desc="Exterior to pre-soak, full wash, window/mirror cleaning, wheel cleaning">Exterior Wash - $50</div>
+<div class="service-tile" data-value="Interior Clean - Car/SUV" data-desc="Interior vacuum, wipe-down of surfaces, windows/mirror cleaning, and protective spray">Interior Clean - $60</div>
+<div class="service-tile" data-value="Full Detail - Car/SUV" data-desc="Complete interior and exterior service with deep cleaning, and protective wax">Full Detail - $120</div>
 </div>
 
 <div class="vehicle-group">
 <h3>Trucks</h3>
-<div class="service-tile" data-value="Exterior Wash - Truck">Exterior Wash - $70</div>
-<div class="service-tile" data-value="Interior Clean - Truck">Interior Clean - $80</div>
-<div class="service-tile" data-value="Full Detail - Truck">Full Detail - $150</div>
+<div class="service-tile" data-value="Exterior Wash - Truck" data-desc="Exterior to pre-soak, full wash, window/mirror cleaning, wheel cleaning">Exterior Wash - $70</div>
+<div class="service-tile" data-value="Interior Clean - Truck" data-desc="Interior vacuum, wipe-down of surfaces, windows/mirror cleaning, and protective spray">Interior Clean - $80</div>
+<div class="service-tile" data-value="Full Detail - Truck" data-desc="Complete interior and exterior service with deep cleaning, and protective wax">Full Detail - $150</div>
 </div>
 
 <div class="vehicle-group">
 <h3>Campers / RVs</h3>
-<div class="service-tile" data-value="Exterior Wash - RV">Exterior Wash - $120–$150</div>
-<div class="service-tile" data-value="Interior Clean - RV">Interior Clean - $150–$200</div>
-<div class="service-tile" data-value="Full Detail - RV">Full Detail - $250–$350</div>
+<div class="service-tile" data-value="Exterior Wash - RV" data-desc="Exterior to pre-soak, full wash, window/mirror cleaning, wheel cleaning">Exterior Wash - $120–$150</div>
+<div class="service-tile" data-value="Interior Clean - RV" data-desc="Interior vacuum, wipe-down of surfaces, windows/mirror cleaning, and protective spray">Interior Clean - $150–$200</div>
+<div class="service-tile" data-value="Full Detail - RV" data-desc="Complete interior and exterior service with deep cleaning, and protective wax">Full Detail - $250–$350</div>
 </div>
 
 <div class="vehicle-group">

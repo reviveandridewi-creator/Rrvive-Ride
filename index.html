@@ -39,7 +39,7 @@ h2 {
   margin-bottom:10px;
 }
 h3 { margin-top:0; }
-p { margin:5px 0; }
+p { margin:5px 0; line-height:1.5; }
 
 .grid {
   display:grid;
@@ -48,34 +48,55 @@ p { margin:5px 0; }
 @media(min-width:700px){
   .grid { grid-template-columns:1fr 1fr; }
 }
-.card {
+
+/* Why Choose Us - Static Cards */
+.static-card {
   background:#1e293b;
   padding:15px;
   border-radius:12px;
-  transition:0.3s;
-  cursor:pointer;
 }
-.card:hover {
-  transform:scale(1.03);
-  box-shadow:0 0 12px #3b82f6;
-}
-.tile-group {
-  display:flex;
-  flex-wrap:wrap;
-  gap:15px;
-  margin-top:10px;
-}
-.tile {
-  flex:1 1 45%;
+
+/* Services Section */
+.service-tile {
   background:#0f172a;
   padding:15px;
   border-radius:12px;
   cursor:pointer;
   transition:0.2s;
+  margin-bottom:10px;
 }
-.tile:hover:not(.disabled){
+.service-tile:hover{
   transform:scale(1.05);
   box-shadow:0 0 12px #3b82f6;
+}
+.service-tile h4 { margin:0 0 5px 0; font-size:16px; }
+.service-tile p { margin:0; font-size:13px; color:#cbd5e1; }
+.service-tile.selected { background:#3b82f6; }
+
+/* Booking Section */
+.booking-section {
+  background:#1e293b;
+  padding:20px;
+  border-radius:15px;
+  margin-top:20px;
+}
+.booking-section p {
+  margin:0 0 5px 0;
+}
+.tile-group {
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  margin-top:5px;
+}
+.tile {
+  flex:1 1 45%;
+  background:#0f172a;
+  padding:12px;
+  border-radius:10px;
+  cursor:pointer;
+  transition:0.2s;
+  text-align:center;
 }
 .tile.selected {
   background:#3b82f6;
@@ -84,14 +105,286 @@ p { margin:5px 0; }
   background:#555;
   cursor:not-allowed;
 }
-.tile h4 {
-  margin:0;
-  margin-bottom:5px;
-  font-size:16px;
-}
-.tile p {
-  margin:0;
-  font-size:13px;
-  color:#cbd5e1;
-}
+.tile h4 { margin:0 0 5px 0; font-size:16px; }
+.tile p { margin:0; font-size:13px; color:#cbd5e1; }
+
 input[type="text"], input[type="tel"], input[type="email"], input[type="date"] {
+  padding:10px;
+  border-radius:8px;
+  border:none;
+  background:#0f172a;
+  color:white;
+  margin-top:10px;
+  width:100%;
+}
+button {
+  padding:14px;
+  background:#22c55e;
+  border:none;
+  border-radius:10px;
+  font-weight:bold;
+  color:white;
+  margin-top:20px;
+  transition:0.3s;
+  width:100%;
+}
+button:hover {
+  background:#16a34a;
+}
+
+/* Modal styles */
+#modal {
+  display:none;
+  position:fixed;
+  left:0; right:0; top:0; bottom:0;
+  background:rgba(0,0,0,0.5);
+  align-items:center; justify-content:center;
+  z-index:100;
+}
+#modalContent {
+  background:#0f172a;
+  color:white;
+  padding:20px;
+  border-radius:12px;
+  max-width:400px;
+}
+#modal button {
+  background:#3b82f6;
+  margin-left:5px;
+}
+</style>
+</head>
+<body>
+
+<header>
+<img src="https://i.ibb.co/HMD5b3H/18896-removebg-preview.png" alt="Revive & Ride Detailing">
+</header>
+
+<!-- Why Choose Us Section -->
+<div class="section" id="why-us">
+  <h2>Revive Your Ride, Anytime, Anywhere.</h2>
+  <p style="color:#cbd5e1;">At <strong>Revive & Ride Detailing</strong>, we combine convenience, expertise, and a personal touch to keep your vehicle spotless, polished, and protected. Our mobile team comes fully equipped to clean, polish, and care for your car, truck, SUV, or RV right where you are. Here’s why customers trust us:</p>
+
+  <div class="grid">
+    <div class="static-card">
+      <h3>Professional Equipment</h3>
+      <p>Our mobile team brings top-tier detailing equipment to get your vehicle looking like new.</p>
+    </div>
+    <div class="static-card">
+      <h3>Eco-Friendly Products</h3>
+      <p>We use safe, environmentally conscious products that protect both your vehicle and the planet.</p>
+    </div>
+    <div class="static-card">
+      <h3>Flexible Scheduling</h3>
+      <p>Book appointments that fit your lifestyle — we come to you, wherever you are.</p>
+    </div>
+    <div class="static-card">
+      <h3>Experienced Team</h3>
+      <p>Our professionals are committed to quality, precision, and your satisfaction every time.</p>
+    </div>
+    <div class="static-card">
+      <h3>Special Offers</h3>
+      <p>First 10 customers receive 10% off! Refer a friend and both enjoy 10% off your next service.</p>
+    </div>
+  </div>
+</div>
+
+<!-- Services Section -->
+<div class="section" id="services">
+<h2>Services</h2>
+<div id="serviceGroup">
+  <div class="service-tile" data-value="Exterior Wash - Car/SUV">
+    <h4>Exterior Wash - Cars/SUVs $50</h4>
+    <p>Exterior pre-soak, full wash, window and mirror cleaning, wheel cleaning.</p>
+  </div>
+  <div class="service-tile" data-value="Interior Clean - Car/SUV">
+    <h4>Interior Clean - Cars/SUVs $60</h4>
+    <p>Interior vacuum, wipe-down of surfaces, window/mirror cleaning, protective spray applied.</p>
+  </div>
+  <div class="service-tile" data-value="Full Detail - Car/SUV">
+    <h4>Full Detail - Cars/SUVs $120</h4>
+    <p>Complete interior and exterior service with deep cleaning and protective wax.</p>
+  </div>
+
+  <div class="service-tile" data-value="Exterior Wash - Truck">
+    <h4>Exterior Wash - Trucks $70</h4>
+    <p>Exterior pre-soak, full wash, window/mirror cleaning, wheel cleaning.</p>
+  </div>
+  <div class="service-tile" data-value="Interior Clean - Truck">
+    <h4>Interior Clean - Trucks $80</h4>
+    <p>Interior vacuum, wipe-down of surfaces, window/mirror cleaning, protective spray applied.</p>
+  </div>
+  <div class="service-tile" data-value="Full Detail - Truck">
+    <h4>Full Detail - Trucks $150</h4>
+    <p>Complete interior and exterior service with deep cleaning and protective wax.</p>
+  </div>
+
+  <div class="service-tile" data-value="Exterior Wash - RV">
+    <h4>Exterior Wash - RVs $120–$150</h4>
+    <p>Exterior pre-soak, full wash, window/mirror cleaning, wheel cleaning.</p>
+  </div>
+  <div class="service-tile" data-value="Interior Clean - RV">
+    <h4>Interior Clean - RVs $150–$200</h4>
+    <p>Interior vacuum, wipe-down of surfaces, window/mirror cleaning.</p>
+  </div>
+  <div class="service-tile" data-value="Full Detail - RV">
+    <h4>Full Detail - RVs $250–$350</h4>
+    <p>Complete interior and exterior service with deep cleaning.</p>
+  </div>
+</div>
+</div>
+
+<!-- Booking Form Section -->
+<div class="section booking-section">
+<h2>Book Your Appointment</h2>
+
+<input type="text" id="name" placeholder="Full Name*" required>
+<input type="tel" id="phone" placeholder="Phone*" required>
+<input type="email" id="email" placeholder="Email">
+<input type="text" id="referral" placeholder="Referral (optional)">
+<input type="date" id="date">
+
+<p style="margin-top:15px;">Vehicle Type</p>
+<div class="tile-group" id="vehicleGroup">
+  <div class="tile" data-value="Car/SUV">Car/SUV</div>
+  <div class="tile" data-value="Truck">Truck</div>
+  <div class="tile" data-value="RV">RV</div>
+</div>
+
+<p style="margin-top:15px;">Services</p>
+<div class="tile-group" id="bookingServiceGroup">
+  <div class="tile" data-value="Exterior Wash">Exterior Wash</div>
+  <div class="tile" data-value="Interior Clean">Interior Clean</div>
+  <div class="tile" data-value="Full Detail">Full Detail</div>
+</div>
+
+<p style="margin-top:15px;">Time of Day</p>
+<div class="tile-group" id="timeGroup">
+  <div class="tile" data-value="Morning">Morning</div>
+  <div class="tile" data-value="Afternoon">Afternoon</div>
+  <div class="tile" data-value="Evening">Evening</div>
+</div>
+
+<button id="submitBtn">Submit Booking</button>
+</div>
+
+<!-- Modal -->
+<div id="modal">
+  <div id="modalContent">
+    <div id="modalMessage"></div>
+    <div style="text-align:right; margin-top:10px;">
+      <button id="modalCancel">Cancel</button>
+      <button id="modalOk">Confirm</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// Prevent past dates
+const dateInput = document.getElementById('date');
+const today = new Date().toISOString().split('T')[0];
+dateInput.setAttribute('min', today);
+
+// Tile selection helpers
+function setupTileSelection(groupId, multiple=false, exclusiveValue=null){
+  const tiles = document.querySelectorAll(`#${groupId} .tile`);
+  let selected = [];
+  tiles.forEach(t=>{
+    t.onclick=()=>{
+      const val = t.dataset.value;
+      if(exclusiveValue && val===exclusiveValue){
+        selected=[val];
+        tiles.forEach(x=>x.classList.remove('selected'));
+        t.classList.add('selected');
+        return;
+      }
+      if(!multiple){
+        tiles.forEach(x=>x.classList.remove('selected'));
+        t.classList.add('selected');
+        selected=[val];
+      } else {
+        if(selected.includes(val)){
+          selected = selected.filter(x=>x!==val);
+          t.classList.remove('selected');
+        } else {
+          selected.push(val);
+          t.classList.add('selected');
+        }
+      }
+    }
+  });
+  return ()=>selected;
+}
+
+// Setup selections
+const getVehicle = setupTileSelection('vehicleGroup');
+const getServices = setupTileSelection('bookingServiceGroup', true, 'Full Detail');
+const getTime = setupTileSelection('timeGroup');
+
+// Modal helper
+function showConfirm(html){
+  return new Promise(resolve=>{
+    document.getElementById('modalMessage').innerHTML=html;
+    const modal=document.getElementById('modal');
+    modal.style.display='flex';
+    document.getElementById('modalOk').onclick=()=>{ modal.style.display='none'; resolve(true);}
+    document.getElementById('modalCancel').onclick=()=>{ modal.style.display='none'; resolve(false);}
+  });
+}
+
+// Submit booking
+document.getElementById('submitBtn').onclick=async()=>{
+  const name=document.getElementById('name').value.trim();
+  const phone=document.getElementById('phone').value.trim();
+  const email=document.getElementById('email').value.trim();
+  const referral=document.getElementById('referral').value.trim();
+  const date=document.getElementById('date').value;
+
+  const vehicle=getVehicle();
+  const services=getServices();
+  const time=getTime();
+
+  if(!name || !phone || !vehicle.length || !services.length || !time.length || !date){
+    alert('Please fill in all required fields and selections.');
+    return;
+  }
+
+  const confirmMsg = `Please confirm your booking details:<br><br>`+
+                     `Name: ${name}<br>`+
+                     `Phone: ${phone}<br>`+
+                     `Email: ${email || 'None'}<br>`+
+                     `Vehicle: ${vehicle.join(', ')}<br>`+
+                     `Services: ${services.join(', ')}<br>`+
+                     `Date: ${date}<br>`+
+                     `Time: ${time.join(', ')}<br>`+
+                     `Referral: ${referral || 'None'}`;
+
+  const ok = await showConfirm(confirmMsg);
+  if(!ok) return;
+
+  // Send via EmailJS
+  try{
+    await emailjs.send('service_3vguzri','template_5haxilf',{
+      name, phone, email,
+      vehicle:vehicle.join(', '),
+      services:services.join(', '),
+      date, time:time.join(', '),
+      referral
+    });
+    alert('Booking Sent!');
+    // Reset
+    document.getElementById('name').value='';
+    document.getElementById('phone').value='';
+    document.getElementById('email').value='';
+    document.getElementById('referral').value='';
+    document.getElementById('date').value='';
+    document.querySelectorAll('.tile').forEach(x=>x.classList.remove('selected'));
+  } catch(err){
+    console.error(err);
+    alert('Failed to send booking. Please try again.');
+  }
+};
+</script>
+
+</body>
+</html>

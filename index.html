@@ -38,6 +38,9 @@ h2 {
   padding-left:10px;
   margin-bottom:10px;
 }
+h3 { margin-top:0; }
+p { margin:5px 0; }
+
 .grid {
   display:grid;
   gap:15px;
@@ -49,6 +52,12 @@ h2 {
   background:#1e293b;
   padding:15px;
   border-radius:12px;
+  transition:0.3s;
+  cursor:pointer;
+}
+.card:hover {
+  transform:scale(1.03);
+  box-shadow:0 0 12px #3b82f6;
 }
 .service {
   background:#0f172a;
@@ -62,31 +71,25 @@ h2 {
   transform:scale(1.03);
   box-shadow:0 0 10px #3b82f6;
 }
-.service.active {
-  border:1px solid #3b82f6;
-}
+.service.active .desc { display:block; }
 .desc {
   display:none;
   font-size:14px;
   margin-top:5px;
   color:#cbd5e1;
 }
-.service.active .desc {
-  display:block;
-}
 form {
   display:flex;
   flex-direction:column;
   gap:10px;
-  background:#0f172a;
-  padding:20px;
-  border-radius:12px;
   margin-top:20px;
 }
 input {
   padding:10px;
   border-radius:8px;
   border:none;
+  background:#0f172a;
+  color:white;
 }
 .tile-group {
   display:flex;
@@ -122,6 +125,10 @@ button {
   font-weight:bold;
   color:white;
   margin-top:10px;
+  transition:0.3s;
+}
+button:hover {
+  background:#16a34a;
 }
 
 /* Modal styles */
@@ -158,6 +165,42 @@ button {
 <img src="https://i.ibb.co/HMD5b3H/18896-removebg-preview.png" alt="Revive & Ride Detailing">
 </header>
 
+<!-- Why Choose Us Section -->
+<div class="section" id="why-us">
+  <h2>Revive Your Ride, Anytime, Anywhere.</h2>
+  <p style="color:#cbd5e1; margin-bottom:20px; line-height:1.6;">
+    At <strong>Revive & Ride Detailing</strong>, we combine convenience, expertise, and a personal touch to keep your vehicle spotless, polished, and protected. Our mobile team comes fully equipped to clean, polish, and care for your car, truck, SUV, or RV right where you are. Here’s why customers trust us:
+  </p>
+
+  <div class="grid">
+    <div class="card">
+      <h3>Professional Equipment</h3>
+      <p style="color:#cbd5e1; font-size:14px;">Our mobile team brings top-tier detailing equipment to get your vehicle looking like new.</p>
+    </div>
+
+    <div class="card">
+      <h3>Eco-Friendly Products</h3>
+      <p style="color:#cbd5e1; font-size:14px;">We use safe, environmentally conscious products that protect both your vehicle and the planet.</p>
+    </div>
+
+    <div class="card">
+      <h3>Flexible Scheduling</h3>
+      <p style="color:#cbd5e1; font-size:14px;">Book appointments that fit your lifestyle — we come to you, wherever you are.</p>
+    </div>
+
+    <div class="card">
+      <h3>Experienced Team</h3>
+      <p style="color:#cbd5e1; font-size:14px;">Our professionals are committed to quality, precision, and your satisfaction every time.</p>
+    </div>
+
+    <div class="card">
+      <h3>Special Offers</h3>
+      <p style="color:#cbd5e1; font-size:14px;">First 10 customers receive 10% off! Refer a friend and both enjoy 10% off your next service.</p>
+    </div>
+  </div>
+</div>
+
+<!-- Services Section -->
 <div class="section">
 <h2>Services</h2>
 <div class="grid">
@@ -213,34 +256,35 @@ Full Detail $250–$350
 </div>
 </div>
 
+<!-- Booking Form Section -->
 <div class="section">
 <h2>Book Now</h2>
 
-<form id="form">
+<form id="form" class="card" style="padding:25px; background:#1e293b; border-radius:15px; box-shadow:0 0 12px #3b82f6;">
 
 <input type="text" id="name" placeholder="Full Name*" required>
 <input type="tel" id="phone" placeholder="Phone*" required>
 <input type="email" id="email" placeholder="Email">
 <input type="text" id="referral" placeholder="Referral (optional)">
 
-<label>Vehicle</label>
+<label style="margin-top:10px; font-weight:600;">Vehicle</label>
 <div class="tile-group" id="vehicleGroup">
 <div class="tile" data-value="Car/SUV">Car/SUV</div>
 <div class="tile" data-value="Truck">Truck</div>
 <div class="tile" data-value="RV">RV</div>
 </div>
 
-<label>Services</label>
+<label style="margin-top:10px; font-weight:600;">Services</label>
 <div class="tile-group" id="serviceGroup">
 <div class="tile" data-value="Exterior Wash">Exterior Wash</div>
 <div class="tile" data-value="Interior Clean">Interior Clean</div>
 <div class="tile" data-value="Full Detail">Full Detail</div>
 </div>
 
-<label>Date & Time</label>
+<label style="margin-top:10px; font-weight:600;">Date & Time</label>
 <input type="date" id="date">
 
-<div class="tile-group" id="timeGroup">
+<div class="tile-group" id="timeGroup" style="margin-top:5px;">
 <div class="tile" data-value="Morning">Morning</div>
 <div class="tile" data-value="Afternoon">Afternoon</div>
 <div class="tile" data-value="Evening">Evening</div>

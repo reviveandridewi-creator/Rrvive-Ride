@@ -13,12 +13,37 @@ emailjs.init("gIfsgrL1sVw862LdG");
 </script>
 
 <style>
-body { font-family:'Poppins',sans-serif; margin:0; background:linear-gradient(135deg,#0f172a,#1e293b); color:white; }
-.section { max-width:1000px; margin:auto; padding:20px; }
-h2 { border-left:4px solid #3b82f6; padding-left:10px; }
-h3 { margin-top:20px; }
+body {
+  font-family:'Poppins',sans-serif;
+  margin:0;
+  background:linear-gradient(135deg,#0f172a,#1e293b);
+  color:white;
+}
 
-.vehicle-group { background:#1e293b; padding:15px; border-radius:12px; margin-bottom:20px; }
+.section {
+  max-width:1000px;
+  margin:auto;
+  padding:20px;
+}
+
+h2 {
+  border-left:4px solid #3b82f6;
+  padding-left:10px;
+}
+
+.vehicle-group {
+  background:#1e293b;
+  padding:15px;
+  border-radius:12px;
+  margin-bottom:20px;
+}
+
+.static-card {
+  background:#1e293b;
+  padding:15px;
+  border-radius:12px;
+  margin-top:10px;
+}
 
 .service-tile, .tile {
   background:#0f172a;
@@ -27,14 +52,23 @@ h3 { margin-top:20px; }
   cursor:pointer;
   transition:0.2s;
   margin-bottom:10px;
+  text-align:center;
 }
+
 .service-tile:hover, .tile:hover {
   transform:scale(1.05);
   box-shadow:0 0 12px #3b82f6;
 }
-.selected { background:#3b82f6; }
 
-.tile-group { display:flex; flex-wrap:wrap; gap:10px; }
+.selected {
+  background:#3b82f6;
+}
+
+.tile-group {
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+}
 
 input, button {
   width:100%;
@@ -43,11 +77,31 @@ input, button {
   border-radius:8px;
   border:none;
 }
-button { background:#22c55e; color:white; font-weight:bold; }
+
+button {
+  background:#22c55e;
+  color:white;
+  font-weight:bold;
+}
 </style>
 </head>
 
 <body>
+
+<!-- WHY CHOOSE US -->
+<div class="section">
+<h2>Revive Your Ride, Anytime, Anywhere.</h2>
+
+<p style="color:#cbd5e1;">
+At <strong>Revive & Ride Detailing</strong>, we combine convenience, expertise, and a personal touch to keep your vehicle spotless, polished, and protected. Our mobile team comes fully equipped to clean, polish, and care for your car, truck, SUV, or RV right where you are.
+</p>
+
+<div class="static-card"><h3>Professional Equipment</h3></div>
+<div class="static-card"><h3>Eco-Friendly Products</h3></div>
+<div class="static-card"><h3>Flexible Scheduling</h3></div>
+<div class="static-card"><h3>Experienced Team</h3></div>
+<div class="static-card"><h3>First 10 Customers Get 10% Off + Referral Discounts</h3></div>
+</div>
 
 <!-- SERVICES -->
 <div class="section">
@@ -55,32 +109,31 @@ button { background:#22c55e; color:white; font-weight:bold; }
 
 <div class="vehicle-group">
 <h3>Cars & SUVs</h3>
-<div class="service-tile" data-value="Exterior Wash - Car/SUV">Exterior Wash - $50</div>
-<div class="service-tile" data-value="Interior Clean - Car/SUV">Interior Clean - $60</div>
-<div class="service-tile" data-value="Full Detail - Car/SUV">Full Detail - $120</div>
+<div class="service-tile">Exterior Wash - $50</div>
+<div class="service-tile">Interior Clean - $60</div>
+<div class="service-tile">Full Detail - $120</div>
 </div>
 
 <div class="vehicle-group">
 <h3>Trucks</h3>
-<div class="service-tile" data-value="Exterior Wash - Truck">Exterior Wash - $70</div>
-<div class="service-tile" data-value="Interior Clean - Truck">Interior Clean - $80</div>
-<div class="service-tile" data-value="Full Detail - Truck">Full Detail - $150</div>
+<div class="service-tile">Exterior Wash - $70</div>
+<div class="service-tile">Interior Clean - $80</div>
+<div class="service-tile">Full Detail - $150</div>
 </div>
 
 <div class="vehicle-group">
 <h3>Campers / RVs</h3>
-<div class="service-tile" data-value="Exterior Wash - RV">Exterior Wash - $120–$150</div>
-<div class="service-tile" data-value="Interior Clean - RV">Interior Clean - $150–$200</div>
-<div class="service-tile" data-value="Full Detail - RV">Full Detail - $250–$350</div>
+<div class="service-tile">Exterior Wash - $120–$150</div>
+<div class="service-tile">Interior Clean - $150–$200</div>
+<div class="service-tile">Full Detail - $250–$350</div>
 </div>
 
-<!-- ADD-ONS CATEGORY -->
 <div class="vehicle-group">
 <h3>Add-Ons</h3>
-<div class="service-tile" data-value="Pet Hair Removal">Pet Hair Removal</div>
-<div class="service-tile" data-value="Stain Treatment">Stain Treatment</div>
-<div class="service-tile" data-value="Odor Removal">Odor Removal</div>
-<div class="service-tile" data-value="Engine Bay Cleaning">Engine Bay Cleaning</div>
+<div class="service-tile">Pet Hair Removal</div>
+<div class="service-tile">Stain Treatment</div>
+<div class="service-tile">Odor Removal</div>
+<div class="service-tile">Engine Bay Cleaning</div>
 </div>
 
 </div>
@@ -92,7 +145,6 @@ button { background:#22c55e; color:white; font-weight:bold; }
 <input id="name" placeholder="Full Name*">
 <input id="phone" placeholder="Phone*">
 <input id="email" placeholder="Email">
-<input id="date" type="date">
 
 <h3>Vehicle</h3>
 <div class="tile-group" id="vehicleGroup">
@@ -117,17 +169,21 @@ button { background:#22c55e; color:white; font-weight:bold; }
 </div>
 
 <h3>Date & Time</h3>
+
+<!-- TIME FIRST -->
 <div class="tile-group" id="timeGroup">
 <div class="tile" data-value="Morning">Morning</div>
 <div class="tile" data-value="Afternoon">Afternoon</div>
 <div class="tile" data-value="Evening">Evening</div>
 </div>
 
+<!-- DATE SECOND -->
+<input type="date" id="date">
+
 <button id="submitBtn">Submit Booking</button>
 </div>
 
 <script>
-// selection helper
 function select(group, multi=false, exclusive=null){
 let selected=[];
 document.querySelectorAll(`#${group} .tile`).forEach(t=>{

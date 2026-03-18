@@ -22,7 +22,6 @@ body {
   background: linear-gradient(135deg,#0f172a,#1e293b);
   color:white;
 }
-
 header {
   text-align:center;
   padding:20px;
@@ -30,18 +29,15 @@ header {
 header img {
   max-width:220px;
 }
-
 .section {
   max-width:1000px;
   margin:auto;
   padding:20px;
 }
-
 h2 {
   border-left:4px solid #3b82f6;
   padding-left:10px;
 }
-
 .grid {
   display:grid;
   gap:15px;
@@ -49,13 +45,11 @@ h2 {
 @media(min-width:700px){
   .grid { grid-template-columns:1fr 1fr; }
 }
-
 .card {
   background:#1e293b;
   padding:15px;
   border-radius:12px;
 }
-
 .service {
   background:#0f172a;
   margin-top:10px;
@@ -71,7 +65,6 @@ h2 {
 .service.active {
   border:1px solid #3b82f6;
 }
-
 .desc {
   display:none;
   font-size:14px;
@@ -81,7 +74,6 @@ h2 {
 .service.active .desc {
   display:block;
 }
-
 form {
   display:flex;
   flex-direction:column;
@@ -90,19 +82,16 @@ form {
   padding:20px;
   border-radius:12px;
 }
-
 input {
   padding:10px;
   border-radius:8px;
   border:none;
 }
-
 .tile-group {
   display:flex;
   flex-wrap:wrap;
   gap:10px;
 }
-
 .tile {
   flex:1 1 45%;
   padding:12px;
@@ -112,21 +101,17 @@ input {
   cursor:pointer;
   transition:0.2s;
 }
-
 .tile:hover:not(.disabled){
   transform:scale(1.05);
   box-shadow:0 0 12px #3b82f6;
 }
-
 .tile.selected {
   background:#3b82f6;
 }
-
 .tile.disabled {
   background:#555;
   cursor:not-allowed;
 }
-
 button {
   padding:14px;
   background:#22c55e;
@@ -250,7 +235,7 @@ Full Detail $250–$350
 </div>
 
 <script>
-// toggle descriptions
+// toggle service descriptions
 document.querySelectorAll('.service').forEach(s=>{
   s.onclick=()=>{
     document.querySelectorAll('.service').forEach(x=>{if(x!==s)x.classList.remove('active');});
@@ -258,7 +243,7 @@ document.querySelectorAll('.service').forEach(s=>{
   }
 });
 
-// vehicle
+// vehicle selection
 let vehicle="";
 document.querySelectorAll('#vehicleGroup .tile').forEach(t=>{
   t.onclick=()=>{
@@ -268,7 +253,7 @@ document.querySelectorAll('#vehicleGroup .tile').forEach(t=>{
   }
 });
 
-// services
+// services selection
 let services=[];
 document.querySelectorAll('#serviceGroup .tile').forEach(t=>{
   t.onclick=()=>{
@@ -296,7 +281,7 @@ document.querySelectorAll('#serviceGroup .tile').forEach(t=>{
   }
 });
 
-// time
+// time selection
 let time="";
 document.querySelectorAll('#timeGroup .tile').forEach(t=>{
   t.onclick=()=>{
@@ -307,7 +292,7 @@ document.querySelectorAll('#timeGroup .tile').forEach(t=>{
   }
 });
 
-// booking limit
+// booking limits
 let bookings={};
 
 function updateTime(){
@@ -326,7 +311,7 @@ document.getElementById('date').addEventListener('change',()=>{
   updateTime();
 });
 
-// submit
+// submit form
 document.getElementById('form').onsubmit=function(e){
   e.preventDefault();
 
@@ -347,7 +332,7 @@ document.getElementById('form').onsubmit=function(e){
 
   bookings[date.value][time]++;
 
-  emailjs.send("service_bssiamd","template_5haxilf",{
+  emailjs.send("service_a9v46fq","template_5haxilf",{
     name:name.value,
     phone:phone.value,
     email:email.value,
@@ -362,7 +347,7 @@ document.getElementById('form').onsubmit=function(e){
   })
   .catch(err=>{
     console.error(err);
-    alert("Error: "+err.text);
+    alert("Error: " + err.text);
   });
 
   updateTime();

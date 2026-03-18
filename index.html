@@ -8,6 +8,14 @@
 <!-- Google Fonts -->
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 
+<!-- EmailJS SDK -->
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+<script type="text/javascript">
+   (function(){
+      emailjs.init("Dalton"); // Your User ID
+   })();
+</script>
+
 <style>
 body {
     margin: 0;
@@ -16,20 +24,10 @@ body {
     line-height: 1.5;
     background: linear-gradient(135deg, #0b0f1a, #1e293b);
 }
-body::before {
-    content: "";
-    position: fixed;
-    top: 0; left: 0; right: 0; bottom: 0;
-    background-image: url("data:image/svg+xml,%3Csvg width='400' height='200' viewBox='0 0 400 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 130 Q70 90 150 130 T370 130' stroke='%23333' stroke-width='1.5' fill='none'/%3E%3Cpath d='M40 160 Q80 120 160 160 T380 160' stroke='%23333' stroke-width='1.5' fill='none'/%3E%3Cpath d='M50 80 Q100 40 180 80 T390 80' stroke='%23333' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");
-    opacity: 0.05;
-    z-index: -1;
-    background-repeat: repeat;
-    background-size: 400px 200px;
-}
 header {
     position: sticky;
     top: 0;
-    background: rgba(11,15,26,0.9);
+    background: rgba(11,15,26,0.95);
     text-align: center;
     padding: 15px;
     border-bottom: 2px solid #1e293b;
@@ -86,7 +84,7 @@ h2 { font-size: 24px; font-weight: 700; margin-bottom: 18px; }
     transition: transform 0.3s ease;
 }
 .why div:hover { transform: translateY(-3px); }
-form input, form select { padding: 10px; margin-bottom: 10px; border-radius: 8px; border: none; }
+form input, form select { padding: 10px; margin-bottom: 10px; border-radius: 8px; border: none; width: 100%; }
 form button { cursor: pointer; }
 footer { text-align: center; padding: 25px; background: #111827; font-size: 14px; }
 </style>
@@ -161,10 +159,10 @@ footer { text-align: center; padding: 25px; background: #111827; font-size: 14px
     <div class="card">🤝 Refer a Friend – 10% Off</div>
 </div>
 
-<!-- BOOKING FORM -->
+<!-- Booking Form -->
 <div class="section">
     <h2>Book Your Detail</h2>
-    <form onsubmit="return sendBooking();" style="display:flex; flex-direction:column; max-width:450px; margin:auto;">
+    <form id="bookingForm" style="display:flex; flex-direction:column; max-width:450px; margin:auto;">
         <label>Full Name:</label>
         <input type="text" id="name" required>
         <label>Email:</label>
@@ -184,7 +182,7 @@ footer { text-align: center; padding: 25px; background: #111827; font-size: 14px
         <div>
             <label><input type="checkbox" name="service" value="Exterior Wash"> Exterior Wash</label><br>
             <label><input type="checkbox" name="service" value="Interior Clean"> Interior Clean</label><br>
-            <label><input type="checkbox" name="service" value="Full Detail"> Full Detail</label><br>
+            <label><input type="checkbox" name="service" value="Full Detail"> Full Detail</label>
         </div>
 
         <label>Add-Ons (Optional):</label>
@@ -200,50 +198,41 @@ footer { text-align: center; padding: 25px; background: #111827; font-size: 14px
 </div>
 
 <script>
-function sendBooking() {
-    const name = document.getElementById('name').value.trim();
-    const phone = document.getElementById('phone').value.trim();
+document.getElementById('bookingForm').addEventListener('submit', function(event){
+    event.preventDefault(); // prevent page reload
 
-    if (!name || !phone) {
-        alert("Please enter your Name and Phone Number.");
-        return false;
+    const formData = {
+        name: document.getElementById('name').value.trim(),
+        email: document.getElementById('email').value.trim(),
+        phone: document.getElementById('phone').value.trim(),
+        vehicle: document.querySelector('input[name="vehicle"]:checked')?.value,
+        services: Array.from(document.querySelectorAll('input[name="service"]:checked')).map(el => el.value).join(", "),
+        addons: Array.from(document.querySelectorAll('input[name="addon"]:checked')).map(el => el.value).join(", ")
+    };
+
+    // validate required fields
+    if(!formData.name || !formData.phone || !formData.vehicle || !formData.services){
+        alert("Please fill in Name, Phone, Vehicle Type, and at least one Service.");
+        return;
     }
 
-    // Vehicle (radio validation)
-    let vehicle;
-    const vehicles = document.getElementsByName('vehicle');
-    for (const v of vehicles) { if (v.checked) { vehicle = v.value; } }
-    if (!vehicle) {
-        alert("Please select a Vehicle Type.");
-        return false;
-    }
+    // Send via EmailJS
+    emailjs.send('service_bssiamd', 'template_5haxilf', formData)
+        .then(() => { alert("Booking submitted! We'll contact you soon."); })
+        .catch(() => { alert("Oops! Something went wrong. Please try again."); });
+});
 
-    // Services (checkbox validation)
-    const services = [];
-    const serviceBoxes = document.getElementsByName('service');
-    for (const s of serviceBoxes) { if (s.checked) { services.push(s.value); } }
-    if (services.length === 0) {
-        alert("Please select at least one Service.");
-        return false;
-    }
-
-    // Add-Ons (optional)
-    const addons = [];
-    const addonBoxes = document.getElementsByName('addon');
-    for (const a of addonBoxes) { if (a.checked) { addons.push(a.value); } }
-
-    // Email
-    const email = document.getElementById('email').value.trim();
-    const mailtoLink = `mailto:reviveandridewi@gmail.com?subject=${encodeURIComponent("Detail Booking Request")}&body=${encodeURIComponent(`Name: ${name}\nEmail: ${email}\nPhone: ${phone}\nVehicle: ${vehicle}\nServices: ${services.join(", ")}\nAdd-Ons: ${addons.join(", ")}`)}`;
-
-    // SMS
-    const smsLink = `sms:+17156366258?&body=${encodeURIComponent(`Booking Request from ${name} - ${phone} - ${vehicle} - Services: ${services.join(", ")} - Add-Ons: ${addons.join(", ")}`)}`;
-
-    window.location.href = mailtoLink;
-    setTimeout(() => { window.location.href = smsLink; }, 500);
-
-    return false;
-}
+// Full Detail exclusivity
+const serviceCheckboxes = document.querySelectorAll('input[name="service"]');
+serviceCheckboxes.forEach(checkbox => {
+    checkbox.addEventListener('change', () => {
+        if(checkbox.value === "Full Detail" && checkbox.checked){
+            serviceCheckboxes.forEach(cb => { if(cb.value !== "Full Detail") cb.disabled = true; });
+        } else if(checkbox.value === "Full Detail" && !checkbox.checked){
+            serviceCheckboxes.forEach(cb => cb.disabled = false; });
+        }
+    });
+});
 </script>
 
 <footer>

@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Revive & Ride Detailing</title>
+
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+<style>
+/* GLOBAL STYLES */
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    color: #fff;
+    line-height: 1.5;
+    background: linear-gradient(135deg, #0b0f1a, #1e293b);
+    background-repeat: repeat;
+}
+
+/* VEHICLE SILHOUETTE BACKGROUND */
+body::before {
+    content: "";
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-image: url("data:image/svg+xml,%3Csvg width='400' height='200' viewBox='0 0 400 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 130 Q70 90 150 130 T370 130' stroke='%23333' stroke-width='1.5' fill='none'/%3E%3Cpath d='M40 160 Q80 120 160 160 T380 160' stroke='%23333' stroke-width='1.5' fill='none'/%3E%3Cpath d='M50 80 Q100 40 180 80 T390 80' stroke='%23333' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");
+    opacity: 0.05;
+    z-index: -1;
+    background-repeat: repeat;
+    background-size: 400px 200px;
+}
+
+/* HEADER */
+header {
+    position: sticky;
+    top: 0;
+    background: rgba(11,15,26,0.9);
+    text-align: center;
+    padding: 15px;
+    border-bottom: 2px solid #1e293b;
+    z-index: 10;
+}
+
+header img {
+    max-width: 250px;
+    height: auto;
+}
+
+/* CTA */
+.cta {
+    background: linear-gradient(90deg, #ffd700, #ffcc00);
+    color: #000;
+    text-align: center;
+    padding: 16px;
+    font-weight: 700;
+    font-size: 18px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    transition: transform 0.3s ease;
+}
+
+.cta:hover {
+    transform: translateY(-2px);
+}
+
+/* SECTION */
+.section {
+    padding: 30px 20px;
+}
+
+h2 {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 18px;
+}
+
+/* CARDS */
+.card {
+    background: rgba(31,41,55,0.9);
+    padding: 20px;
+    margin: 15px 0;
+    border-radius: 16px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 25px rgba(0,0,0,0.6);
+}
+
+.price {
+    float: right;
+    color: #00d4ff;
+    font-weight: 600;
+}
+
+/* GRID */
+.grid {
+    display: grid;
+    gap: 15px;
+}
+
+@media (min-width: 600px) {
+    .grid {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+/* BUTTONS */
+.btn {
+    display: block;
+    text-align: center;
+    background: #1e90ff;
+    color: #fff;
+    padding: 16px;
+    margin-top: 12px;
+    border-radius: 14px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 16px;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.btn:hover {
+    background: #2563eb;
+    transform: translateY(-2px);
+}
+
+.call {
+    background: #22c55e;
+}
+
+.call:hover {
+    background: #16a34a;
+}
+
+/* WHY SECTION */
+.why div {
+    background: rgba(17,24,39,0.85);
+    padding: 18px;
+    margin: 10px 0;
+    border-radius: 14px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+    transition: transform 0.3s ease;
+}
+
+.why div:hover {
+    transform: translateY(-3px);
+}
+
+/* FOOTER */
+footer {
+    text-align: center;
+    padding: 25px;
+    background: #111827;
+    font-size: 14px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <img src="https://i.ibb.co/HMD5b3H/18896-removebg-preview.png" alt="Revive & Ride Detailing">
+</header>
+
+<div class="cta">
+    🚗 First 10 Customers Get 10% Off – Book Now!
+</div>
+
+<div class="section">
+    <h2>Vehicle Services</h2>
+    <div class="grid">
+        <div class="card">
+            <h3>Cars & SUVs</h3>
+            Exterior Wash <span class="price">$50</span><br>
+            Interior Clean <span class="price">$60</span><br>
+            Full Detail <span class="price">$120</span>
+        </div>
+
+        <div class="card">
+            <h3>Trucks</h3>
+            Exterior Wash <span class="price">$70</span><br>
+            Interior Clean <span class="price">$80</span><br>
+            Full Detail <span class="price">$150</span>
+        </div>
+
+        <div class="card">
+            <h3>Trailers</h3>
+            Exterior Wash <span class="price">$80</span><br>
+            Interior Clean <span class="price">$90</span><br>
+            Full Detail <span class="price">$160</span>
+        </div>
+
+        <div class="card">
+            <h3>Campers / RVs</h3>
+            Exterior Wash <span class="price">$120–$150</span><br>
+            Interior Clean <span class="price">$150–$200</span><br>
+            Full Detail <span class="price">$250–$350</span>
+        </div>
+    </div>
+</div>
+
+<div class="section">
+    <h2>Add-Ons</h2>
+    <div class="card">Carpet / Seat Shampoo <span class="price">$50–$100</span></div>
+    <div class="card">Odor Removal <span class="price">$50</span></div>
+    <div class="card">Polish <span class="price">$50</span></div>
+</div>
+
+<div class="section">
+    <h2>Why Choose Us?</h2>
+    <div class="why">
+        <div>✔ Mobile Service – We come to you</div>
+        <div>✔ Professional equipment & chemicals</div>
+        <div>✔ Interior & Exterior Detailing</div>
+        <div>✔ Attention to detail & premium finish</div>
+    </div>
+</div>
+
+<div class="section">
+    <h2>Subscription Packages</h2>
+    <div class="card">Silver – Monthly – $100</div>
+    <div class="card">Gold – Bi-Weekly – $180</div>
+    <div class="card">Platinum – Monthly – $300</div>
+    <div class="card">Fleet / Business – Contact for Quote</div>
+</div>
+
+<div class="section">
+    <h2>Special Offers</h2>
+    <div class="card">🔥 First 10 Customers – 10% Off</div>
+    <div class="card">🤝 Refer a Friend – 10% Off</div>
+</div>
+
+<div class="section">
+    <h2>Book Your Detail</h2>
+    <a href="sms:(715) 636-6258" class="btn">💬 Text to Book</a>
+    <a href="mailto:reviveandridewi@gmail.com?subject=Detail Booking Request&body=Name:%0APhone:%0AVehicle:%0AService Needed:" class="btn">
+        📧 Email to Book
+    </a>
+</div>
+
+<footer>
+    Phone: (715) 636-6258 <br>
+    Email: reviveandridewi@gmail.com
+</footer>
+
+</body>
+</html>

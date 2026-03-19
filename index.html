@@ -26,7 +26,7 @@ h2 { border-left:4px solid #3b82f6; padding-left:10px; margin-bottom:15px; }
 input, button, select { width:100%; padding:0.5rem; margin-top:10px; border-radius:0.5rem; border:none; box-sizing:border-box; }
 button { background:#fbbf24; color:#1e293b; font-weight:bold; cursor:pointer; }
 .tile h4 { margin:5px 0 0 0; font-weight:400; font-size:0.9rem; color:#cbd5e1; }
-.tile p { margin:5px 0 0 0; font-size:0.8rem; color:#cbd5e1; }
+.tile p, .tile small { margin:5px 0 0 0; font-size:0.8rem; color:#cbd5e1; display:block; }
 .category-header { font-size:1.3rem; margin:10px 0 5px 0; border-bottom:2px solid #3b82f6; padding-bottom:3px; }
 @media(max-width:600px){.tile{min-width:45%;}}
 </style>
@@ -154,11 +154,26 @@ All vehicle types — cars, SUVs, trucks, campers, and RVs. Estimated hours and 
 
 <h3>Add-Ons</h3>
 <div class="tile-group" id="addonsGroup">
-<div class="tile" data-min="30" data-max="50">Pet Hair Removal ($30–$50)</div>
-<div class="tile" data-min="40" data-max="40">Stain Treatment ($40)</div>
-<div class="tile" data-min="30" data-max="30">Odor Removal ($30)</div>
-<div class="tile" data-min="35" data-max="35">Engine Bay Cleaning ($35)</div>
-<div class="tile" data-min="25" data-max="45">Polish ($25–$45)</div>
+  <div class="tile" data-min="30" data-max="50">
+    Pet Hair Removal<br>
+    <small>Starting at $30 — larger vehicles & RVs priced accordingly</small>
+  </div>
+  <div class="tile" data-min="40" data-max="60">
+    Stain Treatment<br>
+    <small>Starting at $40 — based on size and condition</small>
+  </div>
+  <div class="tile" data-min="30" data-max="30">
+    Odor Removal<br>
+    <small>Starting at $30</small>
+  </div>
+  <div class="tile" data-min="35" data-max="35">
+    Engine Bay Cleaning<br>
+    <small>$35</small>
+  </div>
+  <div class="tile" data-min="25" data-max="45">
+    Polish<br>
+    <small>Starting at $25 — larger vehicles & RVs priced accordingly</small>
+  </div>
 </div>
 
 <h3>Referral</h3>

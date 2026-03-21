@@ -28,7 +28,30 @@ button { background:#fbbf24; color:#1e293b; font-weight:bold; cursor:pointer; }
 .tile h4 { margin:5px 0 0 0; font-weight:400; font-size:0.9rem; color:#cbd5e1; }
 .tile p, .tile small { margin:5px 0 0 0; font-size:0.8rem; color:#cbd5e1; display:block; }
 .category-header { font-size:1.3rem; margin:10px 0 5px 0; border-bottom:2px solid #3b82f6; padding-bottom:3px; }
+
 @media(max-width:600px){.tile{min-width:45%;}}
+
+/* DESKTOP LAYOUT */
+.main-layout {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 2rem;
+  align-items: start;
+}
+
+.booking-box {
+  position: sticky;
+  top: 20px;
+}
+
+@media(max-width:900px){
+  .main-layout {
+    grid-template-columns: 1fr;
+  }
+  .booking-box {
+    position: static;
+  }
+}
 </style>
 </head>
 
@@ -54,12 +77,16 @@ At <strong>Revive & Ride Detailing</strong>, we combine convenience, expertise, 
 
 <!-- Services + Booking -->
 <section id="services" style="padding:2rem; background:#1e293b; color:white;">
+
+<div class="main-layout">
+
+<!-- LEFT SIDE (Services) -->
+<div>
 <h2 style="text-align:center; font-size:2rem; margin-bottom:1rem;">Revive & Ride Detailing Services</h2>
 <p style="text-align:center; max-width:600px; margin:0 auto 2rem auto;">
 All vehicle types — cars, SUVs, trucks, campers, and RVs. Estimated hours and prices included for transparency.
 </p>
 
-<!-- Service Tiles with Descriptions and Prices -->
 <div class="section">
   <div class="tile-group">
     <div class="tile visual" data-key="exterior">
@@ -118,19 +145,22 @@ All vehicle types — cars, SUVs, trucks, campers, and RVs. Estimated hours and 
     </div>
   </div>
 </div>
+</div>
 
-<!-- Booking Form -->
+<!-- RIGHT SIDE (Booking) -->
+<div class="booking-box">
 <div style="max-width:600px; margin:0 auto; background:#0b0f1a; padding:2rem; border-radius:1rem; box-shadow:0 4px 12px rgba(0,0,0,0.4);">
+
 <h3 style="color:#fbbf24; text-align:center; margin-top:0;">Book Your Appointment</h3>
 <form id="bookingForm">
 
-<label for="name">Name:</label>
+<label>Name:</label>
 <input type="text" id="name" required>
 
-<label for="email">Email:</label>
+<label>Email:</label>
 <input type="email" id="email" required>
 
-<label for="phone">Phone:</label>
+<label>Phone:</label>
 <input type="tel" id="phone" required>
 
 <h3>Vehicle</h3>
@@ -154,44 +184,36 @@ All vehicle types — cars, SUVs, trucks, campers, and RVs. Estimated hours and 
 
 <h3>Add-Ons</h3>
 <div class="tile-group" id="addonsGroup">
-  <div class="tile" data-min="30" data-max="50">
-    Pet Hair Removal<br>
-    <small>Starting at $30 — larger vehicles & RVs priced accordingly</small>
-  </div>
-  <div class="tile" data-min="40" data-max="60">
-    Stain Treatment<br>
-    <small>Starting at $40 — based on size and condition</small>
-  </div>
-  <div class="tile" data-min="30" data-max="30">
-    Odor Removal<br>
-    <small>Starting at $30</small>
-  </div>
-  <div class="tile" data-min="35" data-max="35">
-    Engine Bay Cleaning<br>
-    <small>$35</small>
-  </div>
-  <div class="tile" data-min="25" data-max="45">
-    Polish<br>
-    <small>Starting at $25 — larger vehicles & RVs priced accordingly</small>
-  </div>
+<div class="tile" data-min="30" data-max="50">Pet Hair Removal<br><small>Starting at $30 — larger vehicles & RVs priced accordingly</small></div>
+<div class="tile" data-min="40" data-max="60">Stain Treatment<br><small>Starting at $40 — based on size and condition</small></div>
+<div class="tile" data-min="30" data-max="30">Odor Removal<br><small>Starting at $30</small></div>
+<div class="tile" data-min="35" data-max="35">Engine Bay Cleaning<br><small>$35</small></div>
+<div class="tile" data-min="25" data-max="45">Polish<br><small>Starting at $25 — larger vehicles & RVs priced accordingly</small></div>
 </div>
 
 <h3>Referral</h3>
-<input type="text" id="referral" placeholder="Who referred you?">
+<input type="text" id="referral">
 
 <h3>Date & Time</h3>
 <input type="date" id="date" required>
+
 <div class="tile-group" id="timeGroup">
 <div class="tile" data-value="Morning">Morning</div>
 <div class="tile" data-value="Afternoon">Afternoon</div>
 <div class="tile" data-value="Evening">Evening</div>
 </div>
 
-<p id="totalPrice" style="text-align:center; margin-top:1rem; font-weight:bold; font-size:1.2rem;">Total: $0</p>
+<p id="totalPrice" style="text-align:center; margin-top:1rem; font-weight:bold;">Total: $0</p>
 <button type="submit">Book Now</button>
+
 </form>
 </div>
+</div>
 
+</div>
+</section>
+
+<!-- JS (Your original code unchanged) -->
 <script>
 // Service pricing by vehicle
 const priceTable = {

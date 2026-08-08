@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Revive & Ride Detailing | Mobile Detailing Services</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script>
+emailjs.init("gIfsgrL1sVw862LdG");
+</script>
+
+<!-- Square Web Payments SDK -->
+<script src="https://web.squarecdn.com/v1/square.js"></script>
+
+<style>
+body { font-family:'Poppins',sans-serif; margin:0; background:linear-gradient(135deg,#0f172a,#1e293b); color:white; }
+header { text-align:center; padding:20px 20px 10px 20px; background:#1e293b; }
+header img { max-width:200px; height:auto; }
+
+/* Navigation Bar */
+nav {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  background: #0f172a;
+  padding: 12px;
+  border-bottom: 1px solid #334155;
+}
+nav a {
+  color: #cbd5e1;
+  text-decoration: none;
+  font-weight: 600;
+  padding: 6px 16px;
+  border-radius: 6px;
+  transition: 0.2s;
+}
+nav a:hover, nav a.active {
+  color: white;
+  background: #3b82f6;
+}
+
+footer { text-align:center; padding:20px; background:#0f172a; color:#cbd5e1; font-size:0.85rem; margin-top:40px; border-top:1px solid #334155; }
+footer a { color:#3b82f6; text-decoration:none; }
+footer a:hover { text-decoration:underline; }
+.section { max-width:1000px; margin:auto; padding:20px; }
+h2 { border-left:4px solid #3b82f6; padding-left:10px; margin-bottom:15px; }
+.static-card { background:#1e293b; padding:15px; border-radius:12px; margin-top:10px; word-wrap:break-word; }
+.tile-group { display:flex; flex-wrap:wrap; gap:10px; margin-bottom:15px; }
+.tile { background:#0f172a; padding:15px; border-radius:10px; cursor:pointer; transition:0.2s; text-align:center; flex:1; min-width:100px; word-wrap:break-word; border: 1px solid #334155; }
+.tile:hover { transform:scale(1.02); box-shadow:0 0 10px #3b82f6; }
+.tile.selected { background:#3b82f6; border-color:#60a5fa; }
+.visual { cursor:default; opacity:0.95; pointer-events:none; }
+input, button, select { width:100%; padding:0.7rem; margin-top:8px; border-radius:0.5rem; border:1px solid #334155; box-sizing:border-box; background:#0f172a; color:white; font-family:'Poppins',sans-serif; }
+input:focus, select:focus { outline: 2px solid #3b82f6; }
+button { background:#fbbf24; color:#0f172a; font-weight:bold; cursor:pointer; font-size:1rem; transition: 0.2s; border:none; }
+button:hover { background:#f59e0b; }
+.tile h4 { margin:5px 0 0 0; font-weight:600; font-size:0.9rem; color:#93c5fd; }
+.tile p, .tile small { margin:5px 0 0 0; font-size:0.8rem; color:#cbd5e1; display:block; }
+.category-header { font-size:1.3rem; margin:20px 0 10px 0; border-bottom:2px solid #3b82f6; padding-bottom:3px; color:#93c5fd; }
+
+@media(max-width:600px){.tile{min-width:45%;}}
+
+.main-layout {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 2rem;
+  align-items: start;
+}
+
+.booking-box {
+  position: sticky;
+  top: 20px;
+}
+
+.checkout-bar {
+  background: #0f172a;
+  padding: 1rem;
+  border-radius: 0.75rem;
+  margin-top: 1.5rem;
+  border: 1px solid #334155;
+}
+
+@media(max-width:900px){
+  .main-layout {
+    grid-template-columns: 1fr;
+  }
+  .booking-box {
+    position: static;
+  }
+}
+</style>
+</head>
+
+<body>
+ 
+<header>
+  <img src="18896-removebg-preview.png" alt="Revive & Ride Detailing Logo">
+</header>
+
+<nav>
+  <a href="index.html" class="active">Services & Booking</a>
+  <a href="faq.html">FAQ</a>
+</nav>
+
+<div class="section">
+<h2>Revive Your Ride, Anytime, Anywhere.</h2>
+<p style="color:#cbd5e1;">
+At <strong>Revive & Ride Detailing</strong>, we combine convenience, expertise, and a personal touch to keep your vehicle spotless, polished, and protected. Our mobile team comes fully equipped to clean, polish, and care for your car, truck, SUV, or RV right where you are. Here’s why customers trust us:
+</p>
+
+<div class="static-card"><h3>Professional Mobile Detailing</h3></div>
+<div class="static-card"><h3>Eco-Friendly Products</h3></div>
+<div class="static-card"><h3>Flexible Scheduling</h3></div>
+<div class="static-card"><h3>Experienced Team</h3></div>
+<div class="static-card"><h3>Special Offers</h3><p>Refer a friend and both enjoy 10% off your next service.</p></div>
+</div>
+
+<section id="services" style="padding:2rem 1rem; background:#1e293b; color:white;">
+<div class="section" style="max-width:1100px; padding:0;">
+<div class="main-layout">
+
+<div>
+<h2 style="font-size:1.8rem; margin-bottom:1rem;">Our Detailing Services</h2>
+
+<div class="tile-group" style="flex-direction:column; gap:12px;">
+    <div class="tile visual" data-key="exterior" style="text-align:left;">
+      <div style="font-size:1.1rem; font-weight:600; color:white;">Express Exterior Wash</div>
+      <h4>Sedan $135 | SUV/Truck $165 | Large SUV/Truck $200</h4>
+      <p>Fast, scratch-free hand wash to safely clean, dry, and shine your paint and wheels. Includes hand wash & microfiber towel dry, brake dust wheel cleaning & tire shine, and spray wax for slick paint and quick protection.</p>
+    </div>
+    <div class="tile visual" data-key="interior" style="text-align:left;">
+      <div style="font-size:1.1rem; font-weight:600; color:white;">Essential Interior Reset</div>
+      <h4>Sedan $115 | SUV/Truck $130 | Large SUV/Truck $150</h4>
+      <p>Complete cabin refresh that wipes out dust, grime, and everyday clutter. Includes deep vacuuming of carpets, mats, and seats; clean & sanitize dash, console, cup holders, and door panels; plus streak-free glass cleaning inside and out.</p>
+    </div>
+    <div class="tile visual" data-key="full" style="text-align:left;">
+      <div style="font-size:1.1rem; font-weight:600; color:white;">Complete In & Out Detail</div>
+      <h4>Sedan $250 | SUV/Truck $300 | Large SUV/Truck $350</h4>
+      <p>Our most popular choice—a total vehicle transformation inside and out. Includes full Express Wash & Essential Interior Reset, spot-cleaning for minor carpet and seat stains, and upgraded sealant for added gloss and UV protection.</p>
+    </div>
+    <div class="tile visual" data-key="deep" style="text-align:left;">
+      <div style="font-size:1.1rem; font-weight:600; color:white;">Steam Sanitization & Deep Interior</div>
+      <h4>Sedan $155 | SUV/Truck $180 | Large SUV/Truck $210</h4>
+      <p>Heavy-duty interior rescue using high-heat steam and spot cleaning to eliminate stubborn grime, stains, and odors. Includes high-temperature steam sanitization for seats, vents, and heavy buildup, spot-clean treatment for stubborn stains, and deep blowout/vacuuming in tight crevices.</p>
+    </div>
+    <div class="tile visual" data-key="premium" style="text-align:left;">
+      <div style="font-size:1.1rem; font-weight:600; color:white;">Ultimate Showroom Detail</div>
+      <h4>Sedan $295 | SUV/Truck $365 | Large SUV/Truck $440</h4>
+      <p>The highest level of non-polishing care to bring back that new-car look and feel. Includes everything in the Complete In & Out package, hand-applied ceramic sealant for long-lasting paint protection, and exterior plastic trim restoration to reverse fading.</p>
+    </div>
+</div>
+
+<div class="category-header">Paint Correction Services</div>
+<div class="tile-group" style="flex-direction:column; gap:12px;">
+    <div class="tile visual" data-key="pc-1step" style="text-align:left;">
+      <div style="font-size:1.1rem; font-weight:600; color:white;">1-Step Paint Correction</div>
+      <h4>Sedan $200 | SUV/Truck $260 | Large SUV/Truck $320</h4>
+      <p>Includes decon wash. 1-pass machine polish to boost gloss and remove light swirls (~50–70% defect removal).</p>
+    </div>
+    <div class="tile visual" data-key="pc-2step" style="text-align:left;">
+      <div style="font-size:1.1rem; font-weight:600; color:white;">2-Step Heavy Correction</div>
+      <h4>Sedan $375 | SUV/Truck $475 | Large SUV/Truck $575</h4>
+      <p>Includes decon wash. Heavy cutting pass + fine finishing pass for deep scratch and oxidation removal (~85%+ defect removal).</p>
+    </div>
+    <div class="tile visual" data-key="pc-3step" style="text-align:left;">
+      <div style="font-size:1.1rem; font-weight:600; color:white;">3-Step Signature Show-Car Correction</div>
+      <h4>Sedan $575 | SUV/Truck $725 | Large SUV/Truck $900</h4>
+      <p>Includes decon wash. Compound pass + medium refining + ultra-fine jewel polish for near-perfect optical clarity (~95%+ defect removal).</p>
+    </div>
+</div>
+
+<div class="category-header">Campers / RVs</div>
+<div class="tile-group" style="flex-direction:column; gap:12px;">
+    <div class="tile visual" data-key="rv-ext" style="text-align:left;">
+      <div style="font-size:1.1rem; font-weight:600; color:white;">RV/Trailer exterior wash</div>
+      <h4>Calculated at ~$15 per linear foot</h4>
+      <p>Hand wash, clean wheels & tires, microfiber dry, and exterior shine.</p>
+    </div>
+</div>
+
+</div>
+
+<div class="booking-box">
+<div style="background:#0b0f1a; padding:1.5rem; border-radius:1rem; box-shadow:0 4px 12px rgba(0,0,0,0.4); border:1px solid #334155;">
+
+<h3 style="color:#fbbf24; text-align:center; margin-top:0;">Book Your Appointment</h3>
+
+<form id="bookingForm">
+  <label>Name:</label>
+  <input type="text" id="name" required>
+
+  <label>Email:</label>
+  <input type="email" id="email" required>
+
+  <label>Phone:</label>
+  <input type="tel" id="phone" required>
+
+  <label>Service Address / Location:</label>
+  <input type="text" id="address" placeholder="Street, City, Zip" required>
+
+  <h3 style="font-size:1rem; margin:15px 0 5px 0; color:#93c5fd;">Vehicle Size Category</h3>
+  <div class="tile-group" id="vehicleGroup">
+    <div class="tile" data-value="sedan">Sedan</div>
+    <div class="tile" data-value="suv">SUV/Truck</div>
+    <div class="tile" data-value="largeSuv">Large SUV/Truck</div>
+    <div class="tile" data-value="rv">Camper / RV</div>
+  </div>
+
+  <h3 style="font-size:1rem; margin:15px 0 5px 0; color:#93c5fd;">Vehicle Details</h3>
+  <div style="display:flex; gap:10px;">
+    <input type="number" id="car-year" placeholder="Year (e.g. 2020)" style="flex:1;" required>
+    <input type="text" id="car-make" placeholder="Make (e.g. Ford/Jayco)" style="flex:1;" required>
+    <input type="text" id="car-model" placeholder="Model (e.g. F-150/Jay Flight)" style="flex:1;" required>
+  </div>
+
+  <!-- Dynamic Length Input Field for RVs -->
+  <div id="rvFootageGroup" style="display:none; margin-top:10px;">
+    <label style="color:#93c5fd;">RV / Trailer Length (in Feet):</label>
+    <input type="number" id="rv-feet" placeholder="Length in feet (e.g. 25)" min="10" max="60" oninput="updateTotal()">
+  </div>
+
+  <h3 style="font-size:1rem; margin:15px 0 5px 0; color:#93c5fd;">Service Packages</h3>
+  <div class="tile-group" id="serviceGroup">
+    <div class="tile" data-key="exterior">Express Exterior Wash</div>
+    <div class="tile" data-key="interior">Essential Interior Reset</div>
+    <div class="tile" data-key="full">Complete In & Out Detail</div>
+    <div class="tile" data-key="deep">Steam Sanitization & Deep Interior</div>
+    <div class="tile" data-key="premium">Ultimate Showroom Detail</div>
+    <div class="tile" data-key="pc-1step">1-Step Correction</div>
+    <div class="tile" data-key="pc-2step">2-Step Correction</div>
+    <div class="tile" data-key="pc-3step">3-Step Signature</div>
+    <div class="tile" data-key="rv-ext">RV/Trailer Wash</div>
+  </div>
+
+  <h3 style="font-size:1rem; margin:15px 0 5px 0; color:#93c5fd;">Add-Ons</h3>
+  <div class="tile-group" id="addonsGroup">
+    <div class="tile" data-name="Pet Hair Removal" data-min="45" data-max="45">Pet Hair Removal<br><small>$45</small></div>
+    <div class="tile" data-name="Engine Bay Cleaning" data-min="60" data-max="60">Engine Bay Cleaning<br><small>$60</small></div>
+    <div class="tile" data-name="Headlight Restoration" data-min="75" data-max="75">Headlight Restoration<br><small>$75</small></div>
+    <div class="tile" data-name="Odor Elimination" data-min="50" data-max="50">Odor Elimination<br><small>$50</small></div>
+  </div>
+
+  <div style="font-size: 0.82rem; color: #cbd5e1; background: #0f172a; padding: 10px; border-radius: 8px; margin-top: 10px; border-left: 3px solid #fbbf24;">
+    <strong>Please Note:</strong> All paint correction options include a complete decontamination wash. Lower-tier corrections focus on light swirl removal (~50–70%). Deep scratches and severe water etching require 2-Step or 3-Step correction. Final results depend on factory clear coat depth.
+  </div>
+
+  <label style="margin-top:15px; display:block;">Referral Code / Friend's Name (Optional):</label>
+  <input type="text" id="referral" placeholder="Optional">
+
+  <label>Preferred Date:</label>
+  <input type="date" id="date" required>
+
+  <label style="margin-top:15px; display:block;">Preferred Appointment Time:</label>
+  <select id="timeSelect" required>
+    <option value="" disabled selected>Select an arrival time...</option>
+    <option value="8:00 AM">8:00 AM</option>
+    <option value="8:30 AM">8:30 AM</option>
+    <option value="9:00 AM">9:00 AM</option>
+    <option value="9:30 AM">9:30 AM</option>
+    <option value="10:00 AM">10:00 AM</option>
+    <option value="10:30 AM">10:30 AM</option>
+    <option value="11:00 AM">11:00 AM</option>
+    <option value="11:30 AM">11:30 AM</option>
+    <option value="12:00 PM">12:00 PM</option>
+    <option value="12:30 PM">12:30 PM</option>
+    <option value="1:00 PM">1:00 PM</option>
+    <option value="1:30 PM">1:30 PM</option>
+    <option value="2:00 PM">2:00 PM</option>
+    <option value="2:30 PM">2:30 PM</option>
+    <option value="3:00 PM">3:00 PM</option>
+    <option value="3:30 PM">3:30 PM</option>
+    <option value="4:00 PM">4:00 PM</option>
+    <option value="4:30 PM">4:30 PM</option>
+    <option value="5:00 PM">5:00 PM</option>
+  </select>
+
+  <!-- Terms Agreement Checkbox -->
+  <div style="margin-top:15px; font-size:0.85rem; color:#cbd5e1; display:flex; align-items:flex-start; gap:8px;">
+    <input type="checkbox" id="termsCheck" required style="width:auto; margin-top:3px; cursor:pointer;">
+    <label for="termsCheck" style="margin:0; font-size:0.85rem; color:#cbd5e1; cursor:pointer;">
+      I agree to the <a href="terms.html" target="_blank" style="color:#60a5fa; text-decoration:underline;">Terms of Service & Client Policies</a>, including the non-refundable 25% deposit requirement.
+    </label>
+  </div>
+
+  <div class="checkout-bar">
+    <p id="totalPrice" style="text-align:center; margin:0 0 10px 0; font-weight:bold; font-size:1.1rem; color:#fbbf24;">Total: $0</p>
+    <button type="submit">Proceed to Deposit</button>
+  </div>
+</form>
+
+<div id="successMessage" style="display:none; background:#0b0f1a; border:1px solid #334155; color:#d1fae5; padding:1.5rem; border-radius:0.75rem; text-align:center; margin-top:1rem;">
+  <h3 style="margin-top:0; color:#34d399;">Booking Submitted!</h3>
+  <p id="successText" style="margin-bottom:1rem; font-size:0.95rem; line-height:1.5; color:#cbd5e1;"></p>
+  
+  <!-- Embedded Square Card Container -->
+  <div id="card-container" style="margin-bottom: 1rem;"></div>
+  
+  <button id="card-button" style="background:#fbbf24; color:#0f172a; font-weight:bold; width:100%; padding:12px; border-radius:6px; border:none; cursor:pointer;">
+    Pay Deposit & Confirm Booking
+  </button>
+
+  <p id="payment-status" style="margin-top: 10px; font-size: 0.85rem; font-weight: bold;"></p>
+
+  <button id="resetBookingBtn" style="background:#34d399; color:#064e3b; margin-top:1.5rem; display:none;">Book Another Vehicle</button>
+</div>
+
+</div>
+</div>
+
+</div>
+</div>
+</section>
+
+<footer>
+  <p>© Revive & Ride Detailing. All rights reserved.</p>
+  <p><a href="terms.html" target="_blank">Terms of Service & Policies</a></p>
+</footer>
+
+<!-- Firebase SDK Integration, Square Web Payments, and Automation Script -->
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+import { getFirestore, collection, addDoc, doc, updateDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+
+const firebaseConfig = {
+    apiKey: "AIzaSyC7yxoY9MS3KDP7uyhW7gH6WTnIxxCEXF4",
+    authDomain: "revive-and-ride.firebaseapp.com",
+    projectId: "revive-and-ride",
+    storageBucket: "revive-and-ride.firebasestorage.app",
+    messagingSenderId: "917014700622",
+    appId: "1:917014700622:web:8d1bae84de9569075b191f",
+    measurementId: "G-4X3CD95RC8"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+// Live Square Credentials Connected
+const squareAppId = 'sq0idp-5UYpW9p0m5RsmglFB0yNIQ';
+const squareLocationId = 'LZYHZXCR19SMV';
+
+let payments;
+let card;
+let createdJobId = null;
+
+const priceTable = {
+  exterior: { sedan: [135, 1], suv: [165, 1], largeSuv: [200, 1], rv: [0, 1] },
+  interior: { sedan: [115, 1.5], suv: [130, 1.5], largeSuv: [150, 1.5], rv: [0, 1.5] },
+  full: { sedan: [250, 2.5], suv: [300, 2.5], largeSuv: [350, 2.5], rv: [0, 2.5] },
+  deep: { sedan: [155, 2], suv: [180, 2], largeSuv: [210, 2], rv: [0, 2] },
+  premium: { sedan: [295, 3], suv: [365, 3], largeSuv: [440, 3], rv: [0, 3] },
+  'pc-1step': { sedan: [200, 3], suv: [260, 3], largeSuv: [320, 3], rv: [0, 3] },
+  'pc-2step': { sedan: [375, 5], suv: [475, 5], largeSuv: [575, 5], rv: [0, 5] },
+  'pc-3step': { sedan: [575, 8], suv: [725, 8], largeSuv: [900, 8], rv: [0, 8] },
+  'rv-ext': { sedan: [0, 1], suv: [0, 1], largeSuv: [0, 1], rv: [0, 1] }
+};
+
+const mainPackageKeys = ['exterior', 'interior', 'full', 'deep', 'premium'];
+
+let selections = { vehicle:null, services:[], addons:[] };
+
+function checkRvVisibility() {
+  const rvInputGroup = document.getElementById('rvFootageGroup');
+  if (selections.vehicle === 'rv' || selections.services.includes('rv-ext')) {
+    rvInputGroup.style.display = 'block';
+  } else {
+    rvInputGroup.style.display = 'none';
+  }
+}
+
+document.querySelectorAll('#vehicleGroup .tile').forEach(t=>{
+  t.onclick=()=>{
+    document.querySelectorAll('#vehicleGroup .tile').forEach(x=>x.classList.remove('selected'));
+    t.classList.add('selected');
+    selections.vehicle = t.dataset.value;
+    checkRvVisibility();
+    updateTotal();
+  };
+});
+
+document.querySelectorAll('#serviceGroup .tile').forEach(t=>{
+  t.onclick=()=>{
+    const key = t.dataset.key;
+    
+    // Mutual Exclusivity logic for Main Core Packages
+    if (mainPackageKeys.includes(key)) {
+      document.querySelectorAll('#serviceGroup .tile').forEach(other => {
+        const otherKey = other.dataset.key;
+        if (mainPackageKeys.includes(otherKey) && otherKey !== key) {
+          other.classList.remove('selected');
+          selections.services = selections.services.filter(x => x !== otherKey);
+        }
+      });
+    }
+
+    // Mutual Exclusivity logic for Paint Correction Tiers
+    if (key.startsWith('pc-')) {
+      document.querySelectorAll('#serviceGroup .tile').forEach(other => {
+        const otherKey = other.dataset.key;
+        if (otherKey && otherKey.startsWith('pc-') && otherKey !== key) {
+          other.classList.remove('selected');
+          selections.services = selections.services.filter(x => x !== otherKey);
+        }
+      });
+    }
+
+    t.classList.toggle('selected');
+
+    if(selections.services.includes(key)){
+      selections.services = selections.services.filter(x=>x!==key);
+    }else{
+      selections.services.push(key);
+    }
+    checkRvVisibility();
+    updateTotal();
+  };
+});
+
+document.querySelectorAll('#addonsGroup .tile').forEach(t=>{
+  t.onclick=()=>{
+    t.classList.toggle('selected');
+    const name = t.dataset.name;
+    if(selections.addons.includes(name)){
+      selections.addons = selections.addons.filter(x=>x!==name);
+    }else{
+      selections.addons.push(name);
+    }
+    updateTotal();
+  };
+});
+
+function updateTotal(){
+  let minTotal=0, maxTotal=0;
+  const feetInput = parseInt(document.getElementById('rv-feet').value) || 0;
+
+  if(selections.vehicle && selections.services.length > 0){
+    selections.services.forEach(serv => {
+      if(serv === 'rv-ext' && feetInput > 0) {
+        minTotal += feetInput * 15;
+        maxTotal += feetInput * 15;
+      } else if(priceTable[serv] && priceTable[serv][selections.vehicle]){
+        const [price] = priceTable[serv][selections.vehicle];
+        minTotal += price;
+        maxTotal += price;
+      }
+    });
+  }
+
+  document.querySelectorAll('#addonsGroup .tile.selected').forEach(t=>{
+    minTotal += parseInt(t.dataset.min);
+    maxTotal += parseInt(t.dataset.max);
+  });
+
+  if ((selections.services.includes('rv-ext') || selections.vehicle === 'rv') && feetInput === 0) {
+    document.getElementById('totalPrice').innerText = minTotal > 0 ? `Total: $${minTotal} + RV Quote` : `Total: Calculated (~$15/ft)`;
+  } else {
+    const totalStr = (minTotal===maxTotal)?`$${minTotal}`:`$${minTotal}–$${maxTotal}`;
+    document.getElementById('totalPrice').innerText = `Total: ${totalStr}`;
+  }
+}
+
+window.updateTotal = updateTotal;
+
+async function initializeSquare() {
+  if (!window.Square) {
+    console.error("Square SDK missing");
+    return;
+  }
+  if (!payments) {
+    payments = window.Square.payments(squareAppId, squareLocationId);
+    card = await payments.card({
+      style: {
+        'input': { color: '#ffffff', backgroundColor: '#0f172a' },
+        '::placeholder': { color: '#94a3b8' }
+      }
+    });
+    await card.attach('#card-container');
+  }
+}
+
+document.getElementById('bookingForm').addEventListener('submit', async function(e){
+  e.preventDefault();
+  const name = document.getElementById('name').value;
+  const email = document.getElementById('email').value;
+  const phone = document.getElementById('phone').value;
+  const address = document.getElementById('address').value;
+  const year = document.getElementById('car-year').value;
+  const make = document.getElementById('car-make').value;
+  const model = document.getElementById('car-model').value;
+  const feetInput = parseInt(document.getElementById('rv-feet').value) || 0;
+  const date = document.getElementById('date').value;
+  const timeVal = document.getElementById('timeSelect').value;
+  const referral = document.getElementById('referral').value || "None";
+  const termsAgreed = document.getElementById('termsCheck').checked;
+
+  if(!name || !email || !phone || !address || !selections.vehicle || !year || !make || !model || selections.services.length === 0 || !date || !timeVal || !termsAgreed){
+    alert("Please fill out all required fields, agree to the terms, provide vehicle year/make/model, select at least one service package, and choose a date & time.");
+    return;
+  }
+
+  let minTotal = 0;
+  let maxTotal = 0;
+  if(selections.vehicle && selections.services.length > 0){
+    selections.services.forEach(serv => {
+      if(serv === 'rv-ext' && feetInput > 0) {
+        minTotal += feetInput * 15;
+        maxTotal += feetInput * 15;
+      } else if(priceTable[serv] && priceTable[serv][selections.vehicle]){
+        const [price] = priceTable[serv][selections.vehicle];
+        minTotal += price;
+        maxTotal += price;
+      }
+    });
+  }
+  document.querySelectorAll('#addonsGroup .tile.selected').forEach(t=>{
+    minTotal += parseInt(t.dataset.min);
+    maxTotal += parseInt(t.dataset.max);
+  });
+
+  const isRvService = selections.services.includes('rv-ext') || selections.vehicle === 'rv';
+  const totalStr = (isRvService && feetInput === 0) ? `Calculated at ~$15/ft` : ((minTotal===maxTotal)?`$${minTotal}`:`$${minTotal}–$${maxTotal}`);
+  const depositAmount = Math.round(minTotal * 0.25);
+  const formattedServices = selections.services.map(s => s.toUpperCase()).join(", ");
+  const vehicleDesc = `${year} ${make} ${model} ${feetInput > 0 ? '(' + feetInput + ' ft)' : ''} (${selections.vehicle.toUpperCase()})`;
+
+  const templateParams = {
+    name, email, phone, address, 
+    vehicle: vehicleDesc, 
+    service: formattedServices,
+    addons: selections.addons.join(", ") || "None",
+    date, time: timeVal, referral,
+    totalPrice: totalStr
+  };
+
+  try{
+    // 1. Send Email Notification
+    await emailjs.send('service_3vguzri','template_5haxilf',templateParams);
+    
+    // 2. Automatically Save to App Database (Firebase)
+    const docRef = await addDoc(collection(db, "jobs"), {
+        clientName: name,
+        clientPhone: phone,
+        vehicle: vehicleDesc,
+        colorPlate: address,
+        packageService: `${formattedServices} ${selections.addons.length ? '+ Addons: ' + selections.addons.join(', ') : ''}`,
+        inspectionNotes: `Booked for ${date} (${timeVal}). Referral: ${referral}`,
+        price: minTotal,
+        status: 'Pending',
+        loggedBy: 'Website Booking',
+        createdAt: new Date()
+    });
+
+    createdJobId = docRef.id;
+
+    document.getElementById('bookingForm').style.display = 'none';
+    
+    let depositNotice = isRvService && depositAmount === 0
+      ? `Estimated Total: <strong>${totalStr}</strong><br><br>We will review your vehicle dimensions and contact you with your custom quote and exact deposit request.`
+      : `Estimated Total: <strong>${totalStr}</strong><br>
+         <strong>Required 25% Deposit: $${depositAmount}</strong>`;
+
+    document.getElementById('successText').innerHTML = `
+      Thanks <strong>${name}</strong>! We've received your request for <strong>${formattedServices}</strong> on your <em>${vehicleDesc}</em>.<br><br>
+      ${depositNotice}
+    `;
+    document.getElementById('successMessage').style.display = 'block';
+
+    // Mount Square Card Input
+    if (depositAmount > 0) {
+      await initializeSquare();
+    } else {
+      document.getElementById('card-button').style.display = 'none';
+      document.getElementById('resetBookingBtn').style.display = 'inline-block';
+    }
+
+  } catch(e){
+    alert("Error sending booking. Please try again or call us directly.");
+    console.error(e);
+  }
+});
+
+// Square Payment Execution Handler
+document.getElementById('card-button').onclick = async () => {
+  const statusEl = document.getElementById('payment-status');
+  statusEl.style.color = '#fbbf24';
+  statusEl.innerText = "Processing deposit...";
+
+  try {
+    const result = await card.tokenize();
+    if (result.status === 'OK') {
+      // Update job status in Firebase directly upon card tokenization success
+      if (createdJobId) {
+        await updateDoc(doc(db, "jobs", createdJobId), {
+          status: 'Active',
+          depositPaid: true
+        });
+      }
+
+      statusEl.style.color = '#34d399';
+      statusEl.innerText = "Deposit Paid Successfully! Your appointment is locked in.";
+      document.getElementById('card-button').style.display = 'none';
+      document.getElementById('card-container').style.display = 'none';
+      document.getElementById('resetBookingBtn').style.display = 'inline-block';
+    } else {
+      statusEl.style.color = '#f85149';
+      statusEl.innerText = `Payment failed: ${result.errors[0].message}`;
+    }
+  } catch (err) {
+    statusEl.style.color = '#f85149';
+    statusEl.innerText = "Payment processing error. Please try again.";
+  }
+};
+
+function resetBookingForm(){
+  document.getElementById('bookingForm').reset();
+  document.getElementById('bookingForm').style.display = 'block';
+  document.getElementById('successMessage').style.display = 'none';
+  document.getElementById('rvFootageGroup').style.display = 'none';
+  document.querySelectorAll('.tile.selected').forEach(x=>x.classList.remove('selected'));
+  selections = { vehicle: null, services: [], addons: [] };
+  document.getElementById('totalPrice').innerText = "Total: $0";
+}
+
+document.getElementById('resetBookingBtn').onclick = resetBookingForm;
+</script>
+
+</body>
+</html>
